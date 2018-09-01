@@ -6,7 +6,14 @@ const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 class App extends Component {
   state = {
     latitude: undefined,
-    longitude: undefined
+    longitude: undefined,
+    city: undefined,
+    country: undefined,
+    temperature: undefined,
+    humidity: undefined,
+    description: undefined,
+    icon: undefined,
+    error: undefined
   }
 
   getLocation = () => {
@@ -23,6 +30,7 @@ class App extends Component {
   }
   getWeather = async (e) => {
     e.preventDefault();
+
   }
   render() {
     return (
