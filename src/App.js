@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Title from './components/Title';
 import Location from './components/Location';
 
 import './App.css';
@@ -36,6 +37,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Title />
         <Location getLocation={this.getLocation} />
         <p>Latitude: {this.state.latitude}</p>
         <p>Longitude: {this.state.longitude}</p>
