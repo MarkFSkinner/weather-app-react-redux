@@ -19,12 +19,23 @@ class App extends Component {
     error: undefined
   }
 
-  getLocation = async () => {
+  getLocation = () => {
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(position => {
+      navigator.geolocation.getCurrentPosition(async(position) => {
         this.setState({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude
+        });
+        const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&appid=${API_KEY}&units=metric`);
+        const data = await apiCall.json();
+        this.setState({
+          city: data.name,
+          country: data.sys.country,
+          temperature: data.main.temp,
+          humidity: data.main.humidity,
+          description: data.weather[0].description,
+          icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
+          error: ''
         });
       });
     }
@@ -41,6 +52,12 @@ class App extends Component {
         <Location getLocation={this.getLocation} />
         <p>Latitude: {this.state.latitude}</p>
         <p>Longitude: {this.state.longitude}</p>
+        <p>City: {this.state.city}</p>
+        <p>Country: {this.state.country}</p>
+        <p>Temperature: {this.state.temperature}</p>
+        <p>Humidity: {this.state.humidity}</p>
+        <p>Description: {this.state.description}</p>
+        <p>Icon: <img src={this.state.icon}/></p>
       </div>
     );
   }
