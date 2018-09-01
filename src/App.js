@@ -4,13 +4,9 @@ import './App.css';
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      latitude: undefined,
-      longitude: undefined
-    }
-    this.getLocation = this.getLocation.bind(this)
+  state = {
+    latitude: undefined,
+    longitude: undefined
   }
 
   getLocation = () => {
