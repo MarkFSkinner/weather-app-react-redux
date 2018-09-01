@@ -24,14 +24,13 @@ class App extends Component {
           longitude: position.coords.longitude
         })
       });
-    } else {
-      console.log('No GeoLocation');
     }
   }
+
   getWeather = async (e) => {
     e.preventDefault();
-
   }
+
   render() {
     return (
       <div>
