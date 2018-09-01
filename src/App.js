@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Location from './components/Location';
+
 import './App.css';
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
@@ -16,13 +18,13 @@ class App extends Component {
     error: undefined
   }
 
-  getLocation = () => {
+  getLocation = async () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
         this.setState({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude
-        })
+        });
       });
     }
   }
@@ -34,7 +36,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.getLocation}>Get Location</button>
+        <Location getLocation={this.getLocation} />
         <p>Latitude: {this.state.latitude}</p>
         <p>Longitude: {this.state.longitude}</p>
       </div>
