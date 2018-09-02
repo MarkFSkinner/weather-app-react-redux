@@ -33,7 +33,7 @@ class App extends Component {
       temperatureF: Math.round(data.main.temp * 9/5 +32),
       unit: '°C',
       humidity: data.main.humidity,
-      description: data.weather[0].description,
+      description: data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.substr(1),
       icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
       error: ''
     });
