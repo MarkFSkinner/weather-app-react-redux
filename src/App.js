@@ -48,7 +48,6 @@ class App extends Component {
     const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
     const data = await apiCall.json();
     if (city && country) {
-      //console.log(data);
       this.setState({
         city: data.name,
         country: data.sys.country,
@@ -60,11 +59,12 @@ class App extends Component {
       });
     } else {
       this.setState({
-        temperature: undefined,
         city: undefined,
         country: undefined,
+        temperature: undefined,
         humidity: undefined,
         description: undefined,
+        icon: undefined,
         error: 'Please enter correct values'
       });
     }
