@@ -20,6 +20,18 @@ class App extends Component {
     error: undefined
   }
 
+  addWeatherData = (data) => {
+    this.setState({
+      city: data.name,
+      country: data.sys.country,
+      temperature: Math.round(data.main.temp),
+      humidity: data.main.humidity,
+      description: data.weather[0].description,
+      icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
+      error: ''
+    });
+  }
+
   getLocation = () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(async(position) => {
@@ -29,15 +41,7 @@ class App extends Component {
         });
         const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&appid=${API_KEY}&units=metric`);
         const data = await apiCall.json();
-        this.setState({
-          city: data.name,
-          country: data.sys.country,
-          temperature: data.main.temp,
-          humidity: data.main.humidity,
-          description: data.weather[0].description,
-          icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
-          error: ''
-        });
+        this.addWeatherData(data);
       });
     }
   }
@@ -49,15 +53,7 @@ class App extends Component {
     const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
     const data = await apiCall.json();
     if (city && country) {
-      this.setState({
-        city: data.name,
-        country: data.sys.country,
-        temperature: data.main.temp,
-        humidity: data.main.humidity,
-        description: data.weather[0].description,
-        icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
-        error: ''
-      });
+      this.addWeatherData(data);
     } else {
       this.setState({
         city: undefined,
@@ -70,6 +66,8 @@ class App extends Component {
       });
     }
   }
+
+
 
   render() {
     return (
