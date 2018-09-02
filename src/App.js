@@ -3,7 +3,8 @@ import Title from './components/Title';
 import Location from './components/Location';
 import Form from './components/Form';
 import Weather from './components/Weather';
-import './App.css';
+import Converter from './components/Converter';
+//import './App.css';
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
@@ -14,6 +15,9 @@ class App extends Component {
     city: undefined,
     country: undefined,
     temperature: undefined,
+    temperatureC: undefined,
+    temperatureF: undefined,
+    unit: undefined,
     humidity: undefined,
     description: undefined,
     icon: undefined,
@@ -25,11 +29,15 @@ class App extends Component {
       city: data.name,
       country: data.sys.country,
       temperature: Math.round(data.main.temp),
+      temperatureC: Math.round(data.main.temp),
+      temperatureF: Math.round(data.main.temp * 9/5 +32),
+      unit: '°C',
       humidity: data.main.humidity,
       description: data.weather[0].description,
       icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
       error: ''
     });
+    console.log(this.state.unit);
   }
 
   getLocation = () => {
@@ -59,6 +67,9 @@ class App extends Component {
         city: undefined,
         country: undefined,
         temperature: undefined,
+        temperatureC: undefined,
+        temperatureF: undefined,
+        unit: undefined,
         humidity: undefined,
         description: undefined,
         icon: undefined,
@@ -67,7 +78,19 @@ class App extends Component {
     }
   }
 
-
+  toggleTemperature = (e) => {
+    if(e.target.classList.contains('celsius')) {
+      this.setState({
+        temperature: this.state.temperatureC,
+        unit: '°C'
+      });
+    } else if (e.target.classList.contains('fahrenheit')) {
+      this.setState({
+        temperature: this.state.temperatureF,
+        unit: '°F'
+      });
+    }
+  }
 
   render() {
     return (
@@ -79,11 +102,13 @@ class App extends Component {
           city={this.state.city}
           country={this.state.country}
           temperature={this.state.temperature}
+          unit={this.state.unit}
           humidity={this.state.humidity}
           description={this.state.description}
           icon={this.state.icon}
           error={this.state.error}
         />
+        <Converter toggleTemperature={this.toggleTemperature}/>
       </div>
     );
   }
