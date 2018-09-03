@@ -26,3 +26,8 @@
 #weather__description {
   font-size: 1.25rem;
 }
+
+#weather__humidity img, #weather__wind img {
+  max-width: 13px;
+  padding-bottom: 2px;
+}
