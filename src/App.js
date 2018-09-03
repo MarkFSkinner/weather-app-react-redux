@@ -121,7 +121,7 @@ class App extends Component {
                   />
                 </div>
                 <div className='col-12'>
-                  <Converter toggleTemperature={this.toggleTemperature}/>
+                  { this.state.city && <Converter toggleTemperature={this.toggleTemperature}/> }
                 </div>
               </div>
             </div>
