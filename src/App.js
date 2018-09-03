@@ -4,7 +4,7 @@ import Location from './components/Location';
 import Form from './components/Form';
 import Weather from './components/Weather';
 import Converter from './components/Converter';
-//import './App.css';
+import './App.css';
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
@@ -95,20 +95,38 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Title />
-        <Form getWeather={this.getWeather} />
-        <Location getLocation={this.getLocation} />
-        <Weather
-          city={this.state.city}
-          country={this.state.country}
-          temperature={this.state.temperature}
-          unit={this.state.unit}
-          humidity={this.state.humidity}
-          description={this.state.description}
-          icon={this.state.icon}
-          error={this.state.error}
-        />
-        <Converter toggleTemperature={this.toggleTemperature}/>
+        <div className='wrapper'>
+          <div className='main'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-12'>
+                  <Title />
+                </div>
+                <div className='col-12'>
+                  <Form getWeather={this.getWeather} />
+                </div>
+                <div className='col-12'>
+                  <Location getLocation={this.getLocation} />
+                </div>
+                <div className='col-12'>
+                  <Weather
+                    city={this.state.city}
+                    country={this.state.country}
+                    temperature={this.state.temperature}
+                    unit={this.state.unit}
+                    humidity={this.state.humidity}
+                    description={this.state.description}
+                    icon={this.state.icon}
+                    error={this.state.error}
+                  />
+                </div>
+                <div className='col-12'>
+                  <Converter toggleTemperature={this.toggleTemperature}/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
