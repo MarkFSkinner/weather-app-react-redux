@@ -11,10 +11,14 @@
 }
 
 #weather__temperature {
-  font-size: 4rem;
+  font-size: 5rem;
+  display: inline-block;
 }
 
 #weather__icon {
   width: 90px;
-  margin-bottom: 15px;
+  margin-right: 20px;
+  /*margin-bottom: 16px;*/
+  padding-bottom: 40px;
+  display: inline-block;
 }

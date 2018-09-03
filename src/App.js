@@ -119,9 +119,9 @@ class App extends Component {
                     country={this.state.country}
                     temperature={this.state.temperature}
                     unit={this.state.unit}
+                    icon={this.state.icon}
                     humidity={this.state.humidity}
                     description={this.state.description}
-                    icon={this.state.icon}
                     error={this.state.error}
                   />
                 </div>
