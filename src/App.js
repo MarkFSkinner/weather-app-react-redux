@@ -19,6 +19,7 @@ class App extends Component {
     temperatureF: undefined,
     unit: undefined,
     humidity: undefined,
+    wind: undefined,
     description: undefined,
     icon: undefined,
     error: undefined
@@ -33,6 +34,7 @@ class App extends Component {
       temperatureF: Math.round(data.main.temp * 9/5 +32),
       unit: '°C',
       humidity: data.main.humidity,
+      wind: data.wind.speed,
       description: data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.substr(1),
       icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
       error: ''
@@ -71,6 +73,7 @@ class App extends Component {
         temperatureF: undefined,
         unit: undefined,
         humidity: undefined,
+        wind: undefined,
         description: undefined,
         icon: undefined,
         error: 'Please complete both required fields'
@@ -121,6 +124,7 @@ class App extends Component {
                     unit={this.state.unit}
                     icon={this.state.icon}
                     humidity={this.state.humidity}
+                    wind={this.state.wind}
                     description={this.state.description}
                     error={this.state.error}
                   />
