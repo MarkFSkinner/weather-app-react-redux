@@ -1,3 +1,20 @@
 * {
   text-align: center;
 }
+
+#weather_info {
+  margin-top: 30px;
+}
+
+#weather__location {
+  font-size: 1.5rem;
+}
+
+#weather__temperature {
+  font-size: 4rem;
+}
+
+#weather__icon {
+  width: 90px;
+  margin-bottom: 15px;
+}
