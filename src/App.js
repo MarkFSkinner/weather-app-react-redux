@@ -92,6 +92,11 @@ class App extends Component {
     }
   }
 
+  clearForm = () => {
+    document.getElementById('city').value = '';
+    document.getElementById('country').value = '';
+  }
+
   render() {
     return (
       <div>
@@ -106,7 +111,7 @@ class App extends Component {
                   <Form getWeather={this.getWeather} />
                 </div>
                 <div className='col-12'>
-                  <Location getLocation={this.getLocation} />
+                  <Location getLocation={this.getLocation} clearForm={this.clearForm} />
                 </div>
                 <div className='col-12'>
                   <Weather
