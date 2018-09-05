@@ -4,6 +4,11 @@
 
 #weather_title {
   margin-top: 15px;
+  font-size: 3.5rem;
+}
+
+#weather_title h1 {
+  font-size: 3rem;
 }
 
 #weather_info {
@@ -43,5 +48,42 @@ input {
 
 .btn_weather {
   margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#wrapper {
+  /*border: 1px solid red;*/
+  /*background-color: #1b95e0;*/
+  /*margin-top: 10px;*/
+  height: 120vh;
+  opacity: 0.4;
+  filter: alpha(opacity=50);
+  position: absolute;
+  width: 100%;
+  /*background-size: 100%;*/
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /*height: 100%;*/
+}
+
+.main {
+  /*border: 1px solid green;*/
+  /*height: 100vh;*/
+  /*background-color: #1b95e0;*/
+}
+
+.container {
+  /*border: 1px solid blue;*/
+  /*background-color: white;*/
+  /*height: 100vh;*/
+}
+
+body {
+  /*background-color: #1b95e0;*/
+  /*opacity: 0.2;*/
+}
+
+.btn_converter {
   margin-bottom: 5px;
 }

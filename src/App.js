@@ -23,7 +23,12 @@ class App extends Component {
     direction: undefined,
     description: undefined,
     icon: undefined,
+    background: undefined,
     error: undefined
+  }
+
+  componentWillMount() {
+    this.getLocation();
   }
 
   addWeatherData = (data) => {
@@ -39,9 +44,10 @@ class App extends Component {
       direction: this.convertWindDirection(data.wind.deg),
       description: data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.substr(1),
       icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
+      background: this.getBackground(data.weather[0].icon),
       error: ''
     });
-    console.log(this.state.unit);
+    this.setBackground();
   }
 
   getLocation = () => {
@@ -79,6 +85,7 @@ class App extends Component {
         direction: undefined,
         description: undefined,
         icon: undefined,
+        background: 'white',
         error: 'Please complete both required fields'
       });
     }
@@ -154,10 +161,66 @@ class App extends Component {
     }
   }
 
+  getBackground = (data) => {
+    switch(data) {
+      case '01d':
+        return 'http://www.toca-ch.com/data/walls/143/27445846.jpg'; //sunny day
+        break;
+      case '02d':
+      case '03d':
+      case '04d':
+        return 'https://wallpaper.wiki/wp-content/uploads/2017/05/wallpaper.wiki-Download-Free-Weather-Background-PIC-WPE00194.jpg'; //cloudy day
+        break;
+      case '09d':
+      case '10d':
+        return 'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/D8qa-2E/moddy-wet-weather-background-raining-city-scenery-sad-rain-drops_hzwjel7r__F0000.png'; //rainy day
+        break;
+      case '11d':
+        return 'http://www.toca-ch.com/data/walls/143/27443286.jpg'; //thunder
+        break;
+      case '13d':
+        return 'https://inquirymethod.com/wp-content/uploads/2014/11/snowflake-white-1030x686.jpg'; //daytime snow
+        break;
+      case '50d':
+        return 'https://images.alphacoders.com/290/thumb-1920-290353.jpg'; //daytime mist
+        break;
+      case '01n':
+        return 'https://farm2.static.flickr.com/1676/26385659771_7c354aaf8c_b.jpg'; //clear night
+        break;
+      case '02n':
+      case '03n':
+      case '04n':
+        return 'http://www.toca-ch.com/data/walls/143/27445697.jpg'; //cloudy night
+        break;
+      case '09n':
+      case '10n':
+        return 'http://www.ehowzit.co.za/wp-content/uploads/2016/07/rainy-weather.jpg'; //rainy night
+        break;
+      case '11n':
+        return 'http://www.toca-ch.com/data/walls/143/27443640.jpg'; //night thunder
+        break;
+      case '13n':
+        return 'https://wallpaperstock.net/wallpapers/thumbs1/45397hd.jpeg'; //night snow
+        break;
+      case '50n':
+        return 'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/6d4D4HR/foggy-weather-at-night-street-park_ekrwty77g__F0000.png'; //night mist
+        break;
+      default:
+        return undefined;
+    }
+  }
+
+  setBackground = () => {
+    //document.body.background = this.state.background;
+    let newBackground = this.state.background;
+    document.getElementById('wrapper').style.backgroundImage = `url(${newBackground})`;
+  }
+
   render() {
     return (
       <div>
-        <div className='wrapper'>
+        <div id='wrapper'>
+        </div>
           <div className='main'>
             <div className='container'>
               <div className='row'>
@@ -181,6 +244,7 @@ class App extends Component {
                     wind={this.state.wind}
                     direction={this.state.direction}
                     description={this.state.description}
+                    background={this.state.background}
                     error={this.state.error}
                   />
                 </div>
@@ -191,7 +255,6 @@ class App extends Component {
             </div>
           </div>
         </div>
-      </div>
     );
   }
 }
