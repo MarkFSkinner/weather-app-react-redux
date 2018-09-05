@@ -213,44 +213,42 @@ class App extends Component {
   setBackground = () => {
     //document.body.background = this.state.background;
     let newBackground = this.state.background;
-    document.getElementById('wrapper').style.backgroundImage = `url(${newBackground})`;
+    document.getElementById('background').style.backgroundImage = `url(${newBackground})`;
   }
 
   render() {
     return (
-      <div>
-        <div id='wrapper'>
-        </div>
-          <div className='main'>
-            <div className='container'>
-              <div className='row'>
-                <div className='col-12'>
-                  <Title />
-                </div>
-                <div className='col-12'>
-                  <Form getWeather={this.getWeather} />
-                </div>
-                <div className='col-12'>
-                  <Location getLocation={this.getLocation} clearForm={this.clearForm} />
-                </div>
-                <div className='col-12'>
-                  <Weather
-                    city={this.state.city}
-                    country={this.state.country}
-                    temperature={this.state.temperature}
-                    unit={this.state.unit}
-                    icon={this.state.icon}
-                    humidity={this.state.humidity}
-                    wind={this.state.wind}
-                    direction={this.state.direction}
-                    description={this.state.description}
-                    background={this.state.background}
-                    error={this.state.error}
-                  />
-                </div>
-                <div className='col-12'>
-                  { this.state.city && <Converter toggleTemperature={this.toggleTemperature}/> }
-                </div>
+        <div id='main'>
+          <div id='background'>
+          </div>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-12'>
+                <Title />
+              </div>
+              <div className='col-12'>
+                <Form getWeather={this.getWeather} />
+              </div>
+              <div className='col-12'>
+                <Location getLocation={this.getLocation} clearForm={this.clearForm} />
+              </div>
+              <div className='col-12'>
+                <Weather
+                  city={this.state.city}
+                  country={this.state.country}
+                  temperature={this.state.temperature}
+                  unit={this.state.unit}
+                  icon={this.state.icon}
+                  humidity={this.state.humidity}
+                  wind={this.state.wind}
+                  direction={this.state.direction}
+                  description={this.state.description}
+                  background={this.state.background}
+                  error={this.state.error}
+                />
+              </div>
+              <div className='col-12'>
+                { this.state.city && <Converter toggleTemperature={this.toggleTemperature}/> }
               </div>
             </div>
           </div>
