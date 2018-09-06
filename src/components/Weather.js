@@ -8,7 +8,7 @@ const Weather = props => (
     { props.description && <p id='weather__description'>{props.description}</p> }
     { props.humidity && <p id='weather__humidity'><img src='https://cdn.onlinewebfonts.com/svg/img_493336.png'/> {props.humidity}%</p> }
     { props.wind && <p id='weather__wind'><img src='https://image.flaticon.com/icons/svg/56/56086.svg'/> {props.direction} {props.wind} m/s</p> }
-    { props.error && <p id='weather__error'> Error: {props.error}</p> }
+    { props.message && <p id='weather__message'>*Error: {props.message}*</p> }
   </div>
 )
 

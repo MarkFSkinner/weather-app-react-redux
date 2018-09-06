@@ -24,7 +24,8 @@ class App extends Component {
     description: undefined,
     icon: undefined,
     background: undefined,
-    error: undefined
+    code: undefined,
+    message: undefined
   }
 
   componentWillMount() {
@@ -45,7 +46,8 @@ class App extends Component {
       description: data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.substr(1),
       icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
       background: this.getBackground(data.weather[0].icon),
-      error: ''
+      code: data.cod,
+      message: undefined
     });
     this.setBackground();
   }
@@ -70,7 +72,7 @@ class App extends Component {
     const country = e.target.elements.country.value;
     const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
     const data = await apiCall.json();
-    if (city && country) {
+    if (data.cod === 200) {
       this.addWeatherData(data);
       this.clearForm();
     } else {
@@ -86,8 +88,9 @@ class App extends Component {
         direction: undefined,
         description: undefined,
         icon: undefined,
-        background: 'white',
-        error: 'Please complete both required fields'
+        background: 'https://i.ytimg.com/vi/p28pePKK7Pc/maxresdefault.jpg',
+        code: data.cod,
+        message: data.message.charAt(0).toUpperCase() + data.message.substr(1)
       });
       this.setBackground();
     }
@@ -246,7 +249,7 @@ class App extends Component {
                   direction={this.state.direction}
                   description={this.state.description}
                   background={this.state.background}
-                  error={this.state.error}
+                  message={this.state.message}
                 />
               </div>
               <div className='col-12'>
