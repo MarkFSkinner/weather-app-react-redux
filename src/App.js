@@ -72,6 +72,7 @@ class App extends Component {
     const data = await apiCall.json();
     if (city && country) {
       this.addWeatherData(data);
+      this.clearForm();
     } else {
       this.setState({
         city: undefined,
@@ -88,6 +89,7 @@ class App extends Component {
         background: 'white',
         error: 'Please complete both required fields'
       });
+      this.setBackground();
     }
   }
 
