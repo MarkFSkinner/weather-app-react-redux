@@ -104,3 +104,40 @@ input {
 .btn_converter {
   margin-bottom: 5px;
 }
+
+@media (max-width: 767px) {
+  .my-form {
+    display: block;
+    width: 100%;
+  }
+  .my-input {
+    width: 100%;
+  }
+  /*.form-control {
+    width: 100%;
+  }/*
+  .btn_weather {
+    display: block;
+    margin: auto;
+  }*/
+}
+
+@media (min-width: 576px) {
+  .form-inline .form-control {
+    width: 100%;
+  }
+  .form-inline .form-group {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .btn_weather {
+    margin-top: -16px;
+    margin-bottom: 0px;
+  }
+
+  #local_weather_btn {
+    margin-top: 5px;
+  }
+}
