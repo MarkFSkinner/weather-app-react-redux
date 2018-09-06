@@ -1,5 +1,6 @@
 * {
   text-align: center;
+  /*font-weight: bold;*/
 }
 
 html {
@@ -45,6 +46,7 @@ body {
 }
 
 .container {
+  margin-bottom: 20px;
   /*border: 1px solid blue;*/
   /*background-color: white;*/
   /*height: 100vh;*/
@@ -54,15 +56,16 @@ body {
 
 #weather_title {
   margin-top: 15px;
-  font-size: 3.5rem;
 }
 
 #weather_title h1 {
-  font-size: 3rem;
+  font-size: 3.5rem;
+  font-weight: bold;
 }
 
 #weather_info {
   margin-top: 20px;
+  font-weight: bold;
 }
 
 #weather__location {
@@ -88,6 +91,11 @@ body {
 #weather__humidity img, #weather__wind img {
   max-width: 13px;
   padding-bottom: 2px;
+}
+
+#weather__error {
+  font-size: 2rem;
+  color: red;
 }
 
 input {
