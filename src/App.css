@@ -71,6 +71,10 @@ body {
   font-weight: bold;
 }
 
+#weather_info div{
+  margin-bottom: 1rem;
+}
+
 #weather__location {
   font-size: 1.75rem;
 }
