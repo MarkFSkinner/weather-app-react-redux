@@ -10,7 +10,7 @@ const Form = props => (
       <label className="sr-only" for="country">Country</label>
       <input type='text' className='form-control my-input' name='country' id='country' placeholder='Two letter country code...' required />
     </div>
-    <button className='btn btn-primary btn_weather'>Get Weather</button>
+    <button className='btn btn-secondary btn_weather'>Get Weather</button>
   </form>
 );
 
