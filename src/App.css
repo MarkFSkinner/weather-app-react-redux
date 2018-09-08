@@ -71,9 +71,9 @@ body {
   font-weight: bold;
 }
 
-#weather_info div{
+/*#weather_info div {
   margin-bottom: 1rem;
-}
+}*/
 
 #weather__location {
   font-size: 1.75rem;
@@ -92,7 +92,7 @@ body {
 }
 
 #weather__icon {
-  width: 90px;
+  width: 75px;
   /*margin-right: 20px;*/
   padding-bottom: 40px;
   display: inline-block;
@@ -102,12 +102,19 @@ body {
   font-size: 1.25rem;
 }
 
-#weather__humidity img, #weather__wind img {
+#weather__humidity img {
   max-width: 13px;
   padding-bottom: 2px;
+  /*float: right;*/
 }
 
-#weather__message {
+#weather__wind img {
+  max-width: 13px;
+  padding-bottom: 2px;
+  /*float: left;*/
+}
+
+#weather__message p {
   font-size: 2rem;
   color: red;
 }
