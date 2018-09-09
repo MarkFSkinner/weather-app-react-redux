@@ -3,7 +3,6 @@ import Title from './components/Title';
 import Location from './components/Location';
 import Form from './components/Form';
 import Weather from './components/Weather';
-import Converter from './components/Converter';
 import './App.css';
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
@@ -250,10 +249,8 @@ class App extends Component {
                   description={this.state.description}
                   background={this.state.background}
                   message={this.state.message}
+                  toggleTemperature={this.toggleTemperature}
                 />
-              </div>
-              <div className='col-12'>
-                { this.state.city && <Converter toggleTemperature={this.toggleTemperature}/> }
               </div>
             </div>
           </div>

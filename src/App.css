@@ -82,7 +82,7 @@ body {
 #weather__temperature {
   font-size: 5rem;
   display: inline-block;
-  margin-right: 45px;
+  margin-right: 20px;
 }
 
 #weather__unit {
@@ -134,29 +134,34 @@ input {
   margin-bottom: 5px;
 }
 
-@media (max-width: 767px) {
-  .my-form {
-    display: block;
-    width: 100%;
-  }
-  .my-input {
-    width: 100%;
-  }
-  /*.form-control {
-    width: 100%;
-  }/*
-  .btn_weather {
-    display: block;
-    margin: auto;
-  }*/
+.my-form {
+  display: block;
+  width: 100%;
+}
+.my-input {
+  width: 100%;
 }
 
+
 @media (min-width: 576px) {
-  .form-inline .form-control {
+  /*.form-inline .form-control {
     width: 100%;
-  }
+  }*/
   .form-inline .form-group {
     margin-bottom: 1rem;
+  }
+  .my-form {
+    display: flex;
+    width: auto;
+  }
+  .my-input {
+    width: auto;
+  }
+  #weather_info {
+    /*margin-top: 50px;*/
+  }
+  #weather__location {
+    margin-top: 5px;
   }
 }
 
@@ -165,8 +170,27 @@ input {
     margin-top: -16px;
     margin-bottom: 0px;
   }
-
   #local_weather_btn {
     margin-top: 5px;
   }
+  #weather_info {
+    margin-top: 70px;
+  }
 }
+
+/*@media (orientation:landscape) {
+  .my-form {
+    display: inline-block;
+    width: auto;
+  }
+  .ls-float-left {
+    float: left !important;
+  }
+
+  .ls-float-right {
+    float: right !important;
+  }
+  .col-ls-6 {
+    width: 50%;
+  }
+}*/
