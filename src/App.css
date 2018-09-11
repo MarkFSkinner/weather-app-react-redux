@@ -92,7 +92,7 @@ body {
 }
 
 #weather__icon {
-  width: 75px;
+  width: 65px;
   /*margin-right: 20px;*/
   padding-bottom: 40px;
   display: inline-block;
@@ -161,7 +161,22 @@ input {
     /*margin-top: 50px;*/
   }
   #weather__location {
-    margin-top: 5px;
+    /*margin-top: 10px;*/
+    padding-top: 15px;
+  }
+  #weather__description {
+    /*margin-top: 5px;*/
+    padding-top: 10px;
+  }
+  #weather__temperature {
+    font-size: 4rem;
+  }
+  #weather__icon {
+    width: 55px;
+  }
+  #left_box, #right_box {
+    border: 2px solid #6c757d;
+    border-radius: 2px;
   }
 }
 
@@ -175,6 +190,23 @@ input {
   }
   #weather_info {
     margin-top: 70px;
+  }
+  /*#weather__location, #weather__temperature {
+    float: right;
+  }*/
+  #weather__temperature {
+    font-size: 5rem;
+  }
+  #weather__icon {
+    width: 65px;
+  }
+  #weather__location {
+    /*margin-top: 10px;*/
+    padding-top: 15px;
+  }
+  #weather__description {
+    /*margin-top: 5px;*/
+    padding-top: 15px;
   }
 }
 

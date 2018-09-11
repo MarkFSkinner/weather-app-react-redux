@@ -7,7 +7,7 @@ const Weather = props => (
       props.city && props.country && props.icon && props.temperature && props.unit &&
       props.description && props.humidity && props.wind &&
       <div className='row'>
-        <div className='offset-md-2 col-md-4 col-sm-6 col-12'>
+        <div className='offset-md-1 col-md-5 col-sm-6 col-12' id='left_box'>
           <div id='weather__location' className='col-12'>
             <p>{props.city}, {props.country}</p>
           </div>
@@ -18,7 +18,7 @@ const Weather = props => (
             </p>
           </div>
         </div>
-        <div className='col-md-4 col-sm-6 col-12'>
+        <div className='col-md-5 col-sm-6 col-12' id='right_box'>
           <div id='weather__description' className='col-12'>
             <p>{props.description}</p>
           </div>
