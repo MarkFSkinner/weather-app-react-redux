@@ -135,11 +135,11 @@ input {
 }
 
 .my-form {
-  display: block;
-  width: 100%;
+  /*display: block;
+  width: 100%;*/
 }
 .my-input {
-  width: 100%;
+  /*width: 100%;*/
 }
 
 /*#local_weather_btn {
@@ -250,4 +250,22 @@ input {
   .col-ls-6 {
     width: 50%;
   }
+}*/
+
+/*#default-option {
+  opacity: 0.1;
+}*/
+
+#country {
+  color: rgb(73,80,87,0.8);
+}
+option {
+  color: rgb(73,80,87);
+}
+option:first-child {
+  color: rgb(73,80,87,0.8);
+}
+
+/*#country:invalid {
+  color: rgb(73,80,87,0.5);
 }*/

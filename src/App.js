@@ -24,7 +24,8 @@ class App extends Component {
     icon: undefined,
     background: undefined,
     code: undefined,
-    message: undefined
+    message: undefined,
+    codes: undefined
   }
 
   componentWillMount() {
@@ -61,6 +62,7 @@ class App extends Component {
         const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&appid=${API_KEY}&units=metric`);
         const data = await apiCall.json();
         this.addWeatherData(data);
+        this.getCountryCodes();
       });
     }
   }
@@ -112,6 +114,7 @@ class App extends Component {
   clearForm = () => {
     document.getElementById('city').value = '';
     document.getElementById('country').value = '';
+    document.getElementById('country').style.color = "rgb(73,80,87,0.8)";
   }
 
   convertWindDirection = (degrees) => {
@@ -220,6 +223,26 @@ class App extends Component {
     document.getElementById('background').style.backgroundImage = `url(${newBackground})`;
   }
 
+  getCountryCodes = async () => {
+    const apiCall = await fetch('https://restcountries.eu/rest/v2/');
+    const data = await apiCall.json();
+    //console.log(data[0].alpha2Code);
+    const codesList = data.map(item => item.alpha2Code).sort();
+    const codes = codesList.map(item => {
+      return <option value={item.toLowerCase()}>{item}</option>;
+    });
+    //console.log(data);
+    //console.log(codes[0]);
+    //return codes;
+    this.setState({
+      codes: codes
+    });
+  }
+
+  changeOptionColor = () => {
+    document.getElementById('country').style.color = "rgb(73,80,87)";
+  }
+
   render() {
     return (
         <div id='main'>
@@ -231,7 +254,7 @@ class App extends Component {
                 <Title />
               </div>
               <div className='col-12'>
-                <Form getWeather={this.getWeather} />
+                <Form getWeather={this.getWeather} codes={this.state.codes} changeOptionColor={this.changeOptionColor}/>
               </div>
               <div className='col-12'>
                 <Location getLocation={this.getLocation} clearForm={this.clearForm} />
