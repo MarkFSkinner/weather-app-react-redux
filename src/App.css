@@ -126,8 +126,10 @@ input {
 }
 
 .btn_weather {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  /*margin-top: 5px;
+  margin-bottom: 5px;*/
+  margin-top: -16px;
+  margin-bottom: 0px;
 }
 
 .btn_converter {
@@ -147,9 +149,17 @@ input {
 }*/
 
 #search_weather_btn, #local_weather_btn {
-  display: block;
+  /*display: block;
   margin: auto;
-  margin-bottom: 5px;
+  margin-bottom: 5px;*/
+}
+
+#search_weather_btn {
+  margin-left: 5px;
+}
+
+#local_weather_btn {
+  margin-top: 2px;
 }
 
 @media (min-width: 576px) {
@@ -188,8 +198,8 @@ input {
     border-radius: 5px;
   }
   #search_weather_btn {
-    margin-right: 2.5px;
-    display: inline-block;
+    /*margin-right: 2.5px;
+    display: inline-block;*/
   }
   #local_weather_btn {
     margin-right: 2.5px;
@@ -269,3 +279,7 @@ option:first-child {
 /*#country:invalid {
   color: rgb(73,80,87,0.5);
 }*/
+
+#city {
+  max-width: 160px;
+}

@@ -25,7 +25,8 @@ class App extends Component {
     background: undefined,
     code: undefined,
     message: undefined,
-    codes: undefined
+    codes: undefined,
+    value: 'country'
   }
 
   componentWillMount() {
@@ -73,6 +74,7 @@ class App extends Component {
     const country = e.target.elements.country.value;
     const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
     const data = await apiCall.json();
+    console.log(data);
     if (data.cod === 200) {
       this.addWeatherData(data);
       this.clearForm();
@@ -95,6 +97,7 @@ class App extends Component {
       });
       this.setBackground();
     }
+    console.log(this.state);
   }
 
   toggleTemperature = (e) => {
@@ -113,7 +116,10 @@ class App extends Component {
 
   clearForm = () => {
     document.getElementById('city').value = '';
-    document.getElementById('country').value = '';
+    //document.getElementById('country').value = '';
+    this.setState({
+      value: 'country'
+    });
     document.getElementById('country').style.color = "rgb(73,80,87,0.8)";
   }
 
@@ -172,46 +178,34 @@ class App extends Component {
     switch(data) {
       case '01d':
         return 'http://www.toca-ch.com/data/walls/143/27445846.jpg'; //sunny day
-        break;
       case '02d':
       case '03d':
       case '04d':
         return 'https://wallpaper.wiki/wp-content/uploads/2017/05/wallpaper.wiki-Download-Free-Weather-Background-PIC-WPE00194.jpg'; //cloudy day
-        break;
       case '09d':
       case '10d':
         return 'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/D8qa-2E/moddy-wet-weather-background-raining-city-scenery-sad-rain-drops_hzwjel7r__F0000.png'; //rainy day
-        break;
       case '11d':
         return 'http://www.toca-ch.com/data/walls/143/27443286.jpg'; //thunder
-        break;
       case '13d':
         return 'https://inquirymethod.com/wp-content/uploads/2014/11/snowflake-white-1030x686.jpg'; //daytime snow
-        break;
       case '50d':
         return 'https://images.alphacoders.com/290/thumb-1920-290353.jpg'; //daytime mist
-        break;
       case '01n':
         return 'https://farm2.static.flickr.com/1676/26385659771_7c354aaf8c_b.jpg'; //clear night
-        break;
       case '02n':
       case '03n':
       case '04n':
         return 'http://www.toca-ch.com/data/walls/143/27445697.jpg'; //cloudy night
-        break;
       case '09n':
       case '10n':
         return 'http://www.ehowzit.co.za/wp-content/uploads/2016/07/rainy-weather.jpg'; //rainy night
-        break;
       case '11n':
         return 'http://www.toca-ch.com/data/walls/143/27443640.jpg'; //night thunder
-        break;
       case '13n':
         return 'https://wallpaperstock.net/wallpapers/thumbs1/45397hd.jpeg'; //night snow
-        break;
       case '50n':
         return 'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/6d4D4HR/foggy-weather-at-night-street-park_ekrwty77g__F0000.png'; //night mist
-        break;
       default:
         return undefined;
     }
@@ -228,8 +222,8 @@ class App extends Component {
     const data = await apiCall.json();
     //console.log(data[0].alpha2Code);
     const codesList = data.map(item => item.alpha2Code).sort();
-    const codes = codesList.map(item => {
-      return <option value={item.toLowerCase()}>{item}</option>;
+    const codes = codesList.map((item, index) => {
+      return <option key={index} value={item.toLowerCase()}>{item}</option>;
     });
     //console.log(data);
     //console.log(codes[0]);
@@ -240,6 +234,13 @@ class App extends Component {
   }
 
   changeOptionColor = () => {
+    document.getElementById('country').style.color = "rgb(73,80,87)";
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      value: event.target.value
+    });
     document.getElementById('country').style.color = "rgb(73,80,87)";
   }
 
@@ -254,7 +255,7 @@ class App extends Component {
                 <Title />
               </div>
               <div className='col-12'>
-                <Form getWeather={this.getWeather} codes={this.state.codes} changeOptionColor={this.changeOptionColor}/>
+                <Form value={this.state.value} getWeather={this.getWeather} codes={this.state.codes} handleChange={this.handleChange}/>
               </div>
               <div className='col-12'>
                 <Location getLocation={this.getLocation} clearForm={this.clearForm} />
