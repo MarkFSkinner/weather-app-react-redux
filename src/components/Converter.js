@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Converter = props => (
-  <div className='btn-group btn-group-toggle btn_converter' data-toggle='buttons'>
+  <div id='btn_converter' className='btn-group btn-group-toggle' data-toggle='buttons'>
     <label onClick={props.toggleTemperature} className='btn btn-secondary celsius active'>
       <input type='radio' name='options' autoComplete='off' /> °C
     </label>

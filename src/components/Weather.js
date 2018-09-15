@@ -22,10 +22,10 @@ const Weather = props => (
             <p>{props.description}</p>
           </div>
           <div id='weather__humidity' className='col-12'>
-            <p><img src='https://cdn.onlinewebfonts.com/svg/img_493336.png' alt='humidity icon'/> {props.humidity}%</p>
+            <p><img src='https://cdn.onlinewebfonts.com/svg/img_493336.png' alt='Humidity Icon'/> {props.humidity}%</p>
           </div>
           <div id='weather__wind' className='col-12'>
-            <p><img src='https://image.flaticon.com/icons/svg/56/56086.svg' alt='wind icon'/> {props.direction} {props.wind} m/s</p>
+            <p><img src='https://image.flaticon.com/icons/svg/56/56086.svg' alt='Wind Icon'/> {props.direction} {props.wind} m/s</p>
           </div>
           <div className='col-12'>
             { props.city && <Converter toggleTemperature={props.toggleTemperature}/> }

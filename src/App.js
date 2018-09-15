@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Title from './components/Title';
-import Location from './components/Location';
 import Form from './components/Form';
+import Location from './components/Location';
 import Weather from './components/Weather';
 import './App.css';
 
@@ -25,11 +25,12 @@ class App extends Component {
     background: undefined,
     code: undefined,
     message: undefined,
-    codes: undefined,
+    countryCodes: undefined,
     value: 'country'
   }
 
   componentWillMount() {
+    this.getCountryCodes();
     this.getLocation();
   }
 
@@ -63,7 +64,6 @@ class App extends Component {
         const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&appid=${API_KEY}&units=metric`);
         const data = await apiCall.json();
         this.addWeatherData(data);
-        this.getCountryCodes();
       });
     }
   }
@@ -97,7 +97,6 @@ class App extends Component {
       });
       this.setBackground();
     }
-    console.log(this.state);
   }
 
   toggleTemperature = (e) => {
@@ -116,7 +115,6 @@ class App extends Component {
 
   clearForm = () => {
     document.getElementById('city').value = '';
-    //document.getElementById('country').value = '';
     this.setState({
       value: 'country'
     });
@@ -177,42 +175,53 @@ class App extends Component {
   getBackground = (data) => {
     switch(data) {
       case '01d':
-        return 'http://www.toca-ch.com/data/walls/143/27445846.jpg'; //sunny day
+        //sunny day
+        return 'http://www.toca-ch.com/data/walls/143/27445846.jpg';
       case '02d':
       case '03d':
       case '04d':
-        return 'https://wallpaper.wiki/wp-content/uploads/2017/05/wallpaper.wiki-Download-Free-Weather-Background-PIC-WPE00194.jpg'; //cloudy day
+        //cloudy day
+        return 'https://wallpaper.wiki/wp-content/uploads/2017/05/wallpaper.wiki-Download-Free-Weather-Background-PIC-WPE00194.jpg';
       case '09d':
       case '10d':
-        return 'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/D8qa-2E/moddy-wet-weather-background-raining-city-scenery-sad-rain-drops_hzwjel7r__F0000.png'; //rainy day
+        //rainy day
+        return 'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/D8qa-2E/moddy-wet-weather-background-raining-city-scenery-sad-rain-drops_hzwjel7r__F0000.png';
       case '11d':
-        return 'http://www.toca-ch.com/data/walls/143/27443286.jpg'; //thunder
+        //thunder
+        return 'http://www.toca-ch.com/data/walls/143/27443286.jpg';
       case '13d':
-        return 'https://inquirymethod.com/wp-content/uploads/2014/11/snowflake-white-1030x686.jpg'; //daytime snow
+        //daytime snow
+        return 'https://inquirymethod.com/wp-content/uploads/2014/11/snowflake-white-1030x686.jpg';
       case '50d':
-        return 'https://images.alphacoders.com/290/thumb-1920-290353.jpg'; //daytime mist
+        //daytime mist
+        return 'https://images.alphacoders.com/290/thumb-1920-290353.jpg';
       case '01n':
-        return 'https://farm2.static.flickr.com/1676/26385659771_7c354aaf8c_b.jpg'; //clear night
+        //clear night
+        return 'https://farm2.static.flickr.com/1676/26385659771_7c354aaf8c_b.jpg';
       case '02n':
       case '03n':
       case '04n':
-        return 'http://www.toca-ch.com/data/walls/143/27445697.jpg'; //cloudy night
+        //cloudy night
+        return 'http://www.toca-ch.com/data/walls/143/27445697.jpg';
       case '09n':
       case '10n':
-        return 'http://www.ehowzit.co.za/wp-content/uploads/2016/07/rainy-weather.jpg'; //rainy night
+        //rainy night
+        return 'http://www.ehowzit.co.za/wp-content/uploads/2016/07/rainy-weather.jpg';
       case '11n':
-        return 'http://www.toca-ch.com/data/walls/143/27443640.jpg'; //night thunder
+        //night thunder
+        return 'http://www.toca-ch.com/data/walls/143/27443640.jpg';
       case '13n':
-        return 'https://wallpaperstock.net/wallpapers/thumbs1/45397hd.jpeg'; //night snow
+        //night snow
+        return 'https://wallpaperstock.net/wallpapers/thumbs1/45397hd.jpeg';
       case '50n':
-        return 'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/6d4D4HR/foggy-weather-at-night-street-park_ekrwty77g__F0000.png'; //night mist
+        //night mist
+        return 'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/6d4D4HR/foggy-weather-at-night-street-park_ekrwty77g__F0000.png';
       default:
         return undefined;
     }
   }
 
   setBackground = () => {
-    //document.body.background = this.state.background;
     let newBackground = this.state.background;
     document.getElementById('background').style.backgroundImage = `url(${newBackground})`;
   }
@@ -220,21 +229,13 @@ class App extends Component {
   getCountryCodes = async () => {
     const apiCall = await fetch('https://restcountries.eu/rest/v2/');
     const data = await apiCall.json();
-    //console.log(data[0].alpha2Code);
     const codesList = data.map(item => item.alpha2Code).sort();
     const codes = codesList.map((item, index) => {
       return <option key={index} value={item.toLowerCase()}>{item}</option>;
     });
-    //console.log(data);
-    //console.log(codes[0]);
-    //return codes;
     this.setState({
-      codes: codes
+      countryCodes: codes
     });
-  }
-
-  changeOptionColor = () => {
-    document.getElementById('country').style.color = "rgb(73,80,87)";
   }
 
   handleChange = (event) => {
@@ -255,7 +256,7 @@ class App extends Component {
                 <Title />
               </div>
               <div className='col-12'>
-                <Form value={this.state.value} getWeather={this.getWeather} codes={this.state.codes} handleChange={this.handleChange}/>
+                <Form value={this.state.value} getWeather={this.getWeather} countryCodes={this.state.countryCodes} handleChange={this.handleChange}/>
               </div>
               <div className='col-12'>
                 <Location getLocation={this.getLocation} clearForm={this.clearForm} />
@@ -266,11 +267,11 @@ class App extends Component {
                   country={this.state.country}
                   temperature={this.state.temperature}
                   unit={this.state.unit}
-                  icon={this.state.icon}
                   humidity={this.state.humidity}
                   wind={this.state.wind}
                   direction={this.state.direction}
                   description={this.state.description}
+                  icon={this.state.icon}
                   background={this.state.background}
                   message={this.state.message}
                   toggleTemperature={this.toggleTemperature}
