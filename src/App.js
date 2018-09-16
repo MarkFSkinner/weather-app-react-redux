@@ -30,7 +30,8 @@ class App extends Component {
   }
 
   componentWillMount() {
-    this.getCountryCodes();
+    this.renderCountryCodes();
+    //this.getCountryCodes();
     this.getLocation();
   }
 
@@ -71,8 +72,15 @@ class App extends Component {
   getWeather = async (e) => {
     e.preventDefault();
     const city = e.target.elements.city.value;
-    const country = e.target.elements.country.value;
-    const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
+    const countryTrial = e.target.elements.country.value;
+    console.log('countryTrial = ' + countryTrial);
+    const countriesData = await this.getCountryCodes();
+    //console.log(countriesData[0].name);
+    const result = countriesData.filter(country => country.name.toLowerCase() === countryTrial);
+    console.log('result', result);
+    const countryCode = (result.length > 0) ? result[0].alpha2Code : countryTrial;
+    console.log('countryCode', countryCode);
+    const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&appid=${API_KEY}&units=metric`);
     const data = await apiCall.json();
     console.log(data);
     if (data.cod === 200) {
@@ -229,7 +237,14 @@ class App extends Component {
   getCountryCodes = async () => {
     const apiCall = await fetch('https://restcountries.eu/rest/v2/');
     const data = await apiCall.json();
-    const codesList = data.map(item => item.alpha2Code).sort();
+    return data;
+  }
+
+  renderCountryCodes = async () => {
+    const data = await this.getCountryCodes();
+    console.log(data);
+    //const codesList = data.map(item => item.alpha2Code).sort();
+    const codesList = data.map(item => item.name).sort();
     const codes = codesList.map((item, index) => {
       return <option key={index} value={item.toLowerCase()}>{item}</option>;
     });
