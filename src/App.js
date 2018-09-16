@@ -72,17 +72,12 @@ class App extends Component {
   getWeather = async (e) => {
     e.preventDefault();
     const city = e.target.elements.city.value;
-    const countryTrial = e.target.elements.country.value;
-    console.log('countryTrial = ' + countryTrial);
+    const countryName = e.target.elements.country.value;
     const countriesData = await this.getCountryCodes();
-    //console.log(countriesData[0].name);
-    const result = countriesData.filter(country => country.name.toLowerCase() === countryTrial);
-    console.log('result', result);
-    const countryCode = (result.length > 0) ? result[0].alpha2Code : countryTrial;
-    console.log('countryCode', countryCode);
+    const result = countriesData.filter(country => country.name.toLowerCase() === countryName);
+    const countryCode = (result.length > 0) ? result[0].alpha2Code : countryName;
     const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&appid=${API_KEY}&units=metric`);
     const data = await apiCall.json();
-    console.log(data);
     if (data.cod === 200) {
       this.addWeatherData(data);
       this.clearForm();
