@@ -54,15 +54,31 @@ input {
 }
 
 #city {
-  max-width: 160px;
+  /*max-width: 160px;*/
 }
+
+.my-form {
+  /*max-width: 160px;*/
+  width: 208.67px;
+}
+
+/*#dropdown {
+  width: 210px;
+}*/
 
 #country {
   color: rgb(73,80,87,0.8);
+  /*width: 100%;
+  overflow: hidden;*/
 }
 
 option {
   color: rgb(73,80,87);
+  /*max-width: 150px !important;*/
+  /*width: 100% !important;
+  white-space: nowrap;
+  overflow: hidden;
+  max-height: 100%;*/
 }
 
 option:first-child {
@@ -70,7 +86,7 @@ option:first-child {
 }
 
 #search_weather_btn {
-  margin-top: -17px;
+  margin-top: -12px;
   margin-left: 5px;
 }
 
@@ -128,7 +144,28 @@ option:first-child {
   font-size: 2rem;
 }
 
-@media (min-width: 317px) and (max-width: 373px) {
+
+@media (min-width: 313px) {
+  .my-form {
+    width: 265.5px;
+  }
+  #search_weather_btn {
+    margin-top: -17px;
+  }
+}
+
+@media (min-width: 482px) {
+  .my-form {
+    display: flex;
+    width: auto;
+  }
+  #search_weather_btn {
+    margin-top: -10px;
+    margin-bottom: 5px;
+  }
+}
+
+@media (min-width: 539px) {
   #search_weather_btn {
     margin-top: -12px;
   }
@@ -138,10 +175,10 @@ option:first-child {
   .form-inline .form-group {
     margin-bottom: 1rem;
   }
-  .my-form {
+  /*.my-form {
     display: flex;
     width: auto;
-  }
+  }*/
   .my-input {
     width: auto;
   }

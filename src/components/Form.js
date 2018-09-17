@@ -8,7 +8,7 @@ const Form = props => (
     </div>
     <div className='form-group'>
       <label className="sr-only" htmlFor="country">Country</label>
-      <select value={props.value} className="form-control" id="country" onChange={props.handleChange} required>
+      <select value={props.value} id="country" className="form-control" onChange={props.handleChange}>
         <option id='default-option' value='country'>Country</option>
         {props.countryCodes}
       </select>

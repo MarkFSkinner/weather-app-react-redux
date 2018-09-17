@@ -237,11 +237,11 @@ class App extends Component {
 
   renderCountryCodes = async () => {
     const data = await this.getCountryCodes();
-    console.log(data);
     //const codesList = data.map(item => item.alpha2Code).sort();
     const codesList = data.map(item => item.name).sort();
     const codes = codesList.map((item, index) => {
-      return <option key={index} value={item.toLowerCase()}>{item}</option>;
+      return <option key={index} value={item.toLowerCase()}>{(item.length < 18) ? item : item.substring(0, 18) + '...'}</option>;
+      //return <option key={index} value={item.toLowerCase()}>{item}</option>;
     });
     this.setState({
       countryCodes: codes
