@@ -31,7 +31,6 @@ class App extends Component {
 
   componentWillMount() {
     this.renderCountryCodes();
-    //this.getCountryCodes();
     this.getLocation();
   }
 
@@ -65,6 +64,7 @@ class App extends Component {
         const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&appid=${API_KEY}&units=metric`);
         const data = await apiCall.json();
         this.addWeatherData(data);
+        this.clearForm();
       });
     }
   }
@@ -117,7 +117,8 @@ class App extends Component {
   }
 
   clearForm = () => {
-    document.getElementById('city').value = '';
+    //document.getElementById('city').value = '';
+    document.getElementById('weather__form').reset();
     this.setState({
       value: 'country'
     });
