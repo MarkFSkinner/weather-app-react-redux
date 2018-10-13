@@ -5,10 +5,27 @@ import Location from './components/Location';
 import Weather from './components/Weather';
 import './App.css';
 
+//import { Provider } from 'react-redux';
+//import store from './index';
+import {
+  fetchWeather,
+  clearForm,
+  getCodes,
+  addWeather,
+  setTemperature,
+  selectCountry,
+  getLocation,
+  setLocation
+} from './actions';
+
+//import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+//import { fetchWeatherReducer } from '../actions';
+//import PropTypes from 'prop-types';
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 class App extends Component {
-  state = {
+  /*state = {
     latitude: undefined,
     longitude: undefined,
     city: undefined,
@@ -24,17 +41,25 @@ class App extends Component {
     icon: undefined,
     background: undefined,
     code: undefined,
-    message: undefined,
-    countryCodes: undefined,
-    value: 'country'
+    message: undefined
+    //countryCodes: undefined,
+    //value: 'country'
+  }*/
+
+  componentWillMount = async () => {
+    await this.renderCountryCodes();
+    //console.log('something', this.props.myData.something);
+    this.getLocationFunction();
+    //setTimeout(this.setBackground(), 5000);
+    //this.setBackground();
   }
 
-  componentWillMount() {
-    this.renderCountryCodes();
-    this.getLocation();
-  }
+  /*componentDidMount() {
 
-  addWeatherData = (data) => {
+  }*/
+
+  /*addWeatherData = (data) => {
+    this.props.fetchWeather(this.state.city, this.state.countryCode, API_KEY);
     this.setState({
       city: data.name,
       country: data.sys.country,
@@ -52,9 +77,9 @@ class App extends Component {
       message: undefined
     });
     this.setBackground();
-  }
+  }*/
 
-  getLocation = () => {
+  /*getLocation = () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(async(position) => {
         this.setState({
@@ -67,6 +92,14 @@ class App extends Component {
         this.clearForm();
       });
     }
+  }*/
+
+  getLocationFunction = async () => {
+    //await this.props.getLocation(API_KEY);
+    //await this.props.setLocation(this.props.myData.latitude, this.props.myData.longitude, API_KEY);
+    await this.props.setLocation(API_KEY);
+    this.clearFormFunction();
+    //window.setTimeout(this.setBackground, 500);
   }
 
   getWeather = async (e) => {
@@ -74,15 +107,27 @@ class App extends Component {
     const city = e.target.elements.city.value;
     const countryName = e.target.elements.country.value;
     const countriesData = await this.getCountryCodes();
+    //console.log('countriesData', countriesData);
     const result = countriesData.filter(country => country.name.toLowerCase() === countryName);
     const countryCode = (result.length > 0) ? result[0].alpha2Code : countryName;
-    const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&appid=${API_KEY}&units=metric`);
-    const data = await apiCall.json();
-    if (data.cod === 200) {
-      this.addWeatherData(data);
-      this.clearForm();
-    } else {
-      this.setState({
+    //const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&appid=${API_KEY}&units=metric`);
+    //const data = await apiCall.json();
+
+    await this.props.fetchWeather(city, countryCode, API_KEY);
+    //await this.props.fetchWeather();
+
+    //store.dispatch.fetchWeather(city, countryCode, API_KEY);
+    //this.props.fetchWeather(data);
+    //const code = await
+    //console.log('code', this.props.myData.code);
+    if (this.props.myData.code === 200) {
+      this.clearFormFunction();
+      //this.props.displayError();
+      //this.addWeatherData(data);
+      //this.clearForm();
+    } /*else {
+      this.clearFormFunction();*/
+      /*this.setState({
         city: undefined,
         country: undefined,
         temperature: undefined,
@@ -97,35 +142,40 @@ class App extends Component {
         background: 'https://i.ytimg.com/vi/p28pePKK7Pc/maxresdefault.jpg',
         code: data.cod,
         message: data.message.charAt(0).toUpperCase() + data.message.substr(1)
-      });
-      this.setBackground();
-    }
+      });*/
+      //this.setBackground();
+    //}
+    //this.setBackground();
+    //window.setTimeout(this.setBackground, 500);
   }
 
   toggleTemperature = (e) => {
     if(e.target.classList.contains('celsius')) {
-      this.setState({
+      /*this.setState({
         temperature: this.state.temperatureC,
         unit: '°C'
-      });
+      });*/
+      this.props.setTemperature({temperature: this.props.myData.temperatureC, unit: '°C'});
     } else if (e.target.classList.contains('fahrenheit')) {
-      this.setState({
+      /*this.setState({
         temperature: this.state.temperatureF,
         unit: '°F'
-      });
+      });*/
+      this.props.setTemperature({temperature: this.props.myData.temperatureF, unit: '°F'});
     }
   }
 
-  clearForm = () => {
+  clearFormFunction = () => {
     //document.getElementById('city').value = '';
     document.getElementById('weather__form').reset();
-    this.setState({
+    /*this.setState({
       value: 'country'
-    });
+    });*/
+    this.props.clearForm();
     document.getElementById('country').style.color = "rgb(73,80,87,0.8)";
   }
 
-  convertWindDirection = (degrees) => {
+  /*convertWindDirection = (degrees) => {
     if (degrees > 348.75 || degrees < 11.25) {
       return 'N';
     }
@@ -223,12 +273,13 @@ class App extends Component {
       default:
         return undefined;
     }
-  }
+  }*/
 
-  setBackground = () => {
-    let newBackground = this.state.background;
+  /*setBackground = () => {
+    let newBackground = this.props.myData.background;
+    console.log('SET BACKGROUND', this.props.myData.background);
     document.getElementById('background').style.backgroundImage = `url(${newBackground})`;
-  }
+  }*/
 
   getCountryCodes = async () => {
     const apiCall = await fetch('https://restcountries.eu/rest/v2/');
@@ -237,22 +288,26 @@ class App extends Component {
   }
 
   renderCountryCodes = async () => {
-    const data = await this.getCountryCodes();
+    //const data = await this.getCountryCodes();
     //const codesList = data.map(item => item.alpha2Code).sort();
-    const codesList = data.map(item => item.name).sort();
-    const codes = codesList.map((item, index) => {
-      return <option key={index} value={item.toLowerCase()}>{(item.length < 18) ? item : item.substring(0, 18) + '...'}</option>;
+    //const codesList = data.map(item => item.name).sort();
+    //const codes = codesList.map((item, index) => {
+    //  return <option key={index} value={item.toLowerCase()}>{(item.length < 18) ? item : item.substring(0, 18) + '...'}</option>;
       //return <option key={index} value={item.toLowerCase()}>{item}</option>;
-    });
-    this.setState({
-      countryCodes: codes
-    });
+    //});
+    //console.log(codes);
+    this.props.getCodes();
+    //console.log(this.state.something);
   }
 
   handleChange = (event) => {
-    this.setState({
+    const result = event.target.value;
+    /*this.setState({
       value: event.target.value
-    });
+    });*/
+    this.props.selectCountry(result);
+
+    //console.log("HANDLE CHANGE");
     document.getElementById('country').style.color = "rgb(73,80,87)";
   }
 
@@ -267,24 +322,24 @@ class App extends Component {
                 <Title />
               </div>
               <div className='col-12'>
-                <Form value={this.state.value} getWeather={this.getWeather} countryCodes={this.state.countryCodes} handleChange={this.handleChange}/>
+                <Form value={this.props.myData.value} getWeather={this.getWeather} countryCodes={this.props.myData.countryCodes} handleChange={this.handleChange}/>
               </div>
               <div className='col-12'>
-                <Location getLocation={this.getLocation} clearForm={this.clearForm} />
+                <Location getLocationFunction ={this.getLocationFunction} clearFormFunction={this.clearFormFunction} />
               </div>
               <div className='col-12'>
                 <Weather
-                  city={this.state.city}
-                  country={this.state.country}
-                  temperature={this.state.temperature}
-                  unit={this.state.unit}
-                  humidity={this.state.humidity}
-                  wind={this.state.wind}
-                  direction={this.state.direction}
-                  description={this.state.description}
-                  icon={this.state.icon}
-                  background={this.state.background}
-                  message={this.state.message}
+                  city={this.props.myData.city}
+                  country={this.props.myData.country}
+                  temperature={this.props.myData.temperature}
+                  unit={this.props.myData.unit}
+                  humidity={this.props.myData.humidity}
+                  wind={this.props.myData.wind}
+                  direction={this.props.myData.direction}
+                  description={this.props.myData.description}
+                  icon={this.props.myData.icon}
+                  background={this.props.myData.background}
+                  message={this.props.myData.message}
                   toggleTemperature={this.toggleTemperature}
                 />
               </div>
@@ -295,4 +350,25 @@ class App extends Component {
   }
 }
 
-export default App;
+/*App.propTypes = {
+  fetchWeather: PropTypes.func.isRequired
+}*/
+
+function mapStateToProps(state) {
+  //console.log('state', state.myData);
+  return {
+    myData: state.myData
+  }
+}
+
+//export default App;
+export default connect(mapStateToProps, {
+  fetchWeather,
+  clearForm,
+  getCodes,
+  addWeather,
+  setTemperature,
+  selectCountry,
+  getLocation,
+  setLocation
+})(App);
