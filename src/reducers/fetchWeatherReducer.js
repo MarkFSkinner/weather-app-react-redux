@@ -1,30 +1,14 @@
 import {
   FETCH_WEATHER,
   FETCH_ERROR,
-  CLEAR_FORM,
-  FETCH_CODES,
-  SET_TEMPERATURE,
+  FETCH_COUNTRIES,
+  FETCH_NAMES,
   SELECT_COUNTRY,
-  GET_LOCATION,
+  CLEAR_FORM,
+  SET_TEMPERATURE
 } from '../actions/types';
 
 const initialState = {
-  latitude: undefined,
-  longitude: undefined,
-  city: undefined,
-  country: undefined,
-  temperature: undefined,
-  temperatureC: undefined,
-  temperatureF: undefined,
-  unit: undefined,
-  humidity: undefined,
-  wind: undefined,
-  direction: undefined,
-  description: undefined,
-  icon: undefined,
-  background: undefined,
-  code: undefined,
-  message: undefined,
   value: 'country'
 }
 
@@ -79,13 +63,9 @@ const convertWindDirection = (degrees) => {
   }
 }
 
-
 const setBackground = (background) => {
-  //let newBackground = this.props.myData.background;
-  //console.log('SET BACKGROUND', this.props.myData.background);
   document.getElementById('background').style.backgroundImage = `url(${background})`;
 }
-
 
 const getBackground = (data) => {
   let background;
@@ -157,7 +137,6 @@ const getBackground = (data) => {
 export default function(state = initialState, action) {
   switch(action.type) {
     case FETCH_WEATHER:
-      console.log('FETCH WEATHER REDUCER');
       return {
         ...state,
         city: action.payload.name,
@@ -174,7 +153,6 @@ export default function(state = initialState, action) {
         background: getBackground(action.payload.weather[0].icon),
         code: action.payload.cod,
         message: undefined
-        //value: 'country'
       }
     case FETCH_ERROR:
       return {
@@ -194,47 +172,31 @@ export default function(state = initialState, action) {
         code: action.payload.cod,
         message: action.payload.message.charAt(0).toUpperCase() + action.payload.message.substr(1)
       }
-    case CLEAR_FORM:
-      //console.log('another action');
+    case FETCH_COUNTRIES:
       return {
         ...state,
-        value: 'country'
+        countries: action.payload
       }
-    case FETCH_CODES:
-      //console.log('action');
+    case FETCH_NAMES:
       return {
         ...state,
-        countryCodes: action.payload
-      }
-    /*case SET_CELSIUS:
-      return {
-        ...state,
-        temperature: action.payload,
-        unit: '°C'
-      }
-    case SET_FAHRENHEIT:
-      return {
-        ...state,
-        temperature: action.payload,
-        unit: '°F'
-      }*/
-    case SET_TEMPERATURE:
-      return {
-        ...state,
-        temperature: action.payload.temperature,
-        unit: action.payload.unit
+        countryNames: action.payload
       }
     case SELECT_COUNTRY:
       return {
         ...state,
         value: action.payload
       }
-    case GET_LOCATION:
-      console.log('GET LOCATION REDUCER');
+    case CLEAR_FORM:
       return {
         ...state,
-        latitude: action.payload.coords.latitude,
-        longitude: action.payload.coords.longitude
+        value: 'country'
+      }
+    case SET_TEMPERATURE:
+      return {
+        ...state,
+        temperature: action.payload.temperature,
+        unit: action.payload.unit
       }
     default:
       return state;
