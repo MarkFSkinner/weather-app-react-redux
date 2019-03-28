@@ -8,7 +8,7 @@ const Weather = props => (
     {
       props.city && props.country &&
       <div className='row'>
-        <div id="weather__container">
+        <div id='weather__container'>
           {/*<div id='weather__location' className='col-12'>
             <p>{props.city}, {props.country}</p>
           </div>*/}
@@ -31,19 +31,23 @@ const Weather = props => (
             <div id='weather__icon' className='col-12 align-top'>
               {/*<img id='weather__icon' src={props.icon} alt='Weather Icon'/>*/}
               {/*<i id='weather__icon' className="wi wi-day-sunny"></i>*/}
-              <i id='weather__icon' className="material-icons">wb_sunny</i>
               {/*<i className='hfi hfi-sun'></i>*/}
+              {/*<i id='weather__icon' className="fas fa-sun"></i>*/}
+              {/*<i id='weather__icon' className='material-icons'>wb_sunny</i>*/}
+              {/*<i id='weather__icon' className="fas fa-cloud-rain"></i>*/}
+              <i id='weather__icon' className="wi wi-day-rain"></i>
+
             </div>
 
             <div id='weather__humidity' className='col-12 weather__extras'>
-              {/*<p>{props.humidity}% <i className="wi wi-humidity"></i></p>*/}
-              {/*<p>{props.humidity}% <i className="hst hst-raindrop"></i></p>*/}
-              {/*<p>{props.humidity}% <i className="fas fa-tint"></i></p>*/}
-              <p>{props.humidity}% <FontAwesomeIcon icon="tint"/></p>
+              {/*<p>{props.humidity}% <i className='wi wi-humidity'></i></p>*/}
+              {/*<p>{props.humidity}% <i className='hst hst-raindrop'></i></p>*/}
+              {/*<p>{props.humidity}% <i className='fas fa-tint'></i></p>*/}
+              <p>{props.humidity}% <FontAwesomeIcon icon='tint'/></p>
             </div>
             <div id='weather__wind' className='col-12 weather__extras'>
               {/*<p>{props.direction} {props.wind} m/s <i className="wi wi-strong-wind"></i></p>*/}
-              <p>{props.direction} {props.wind} m/s <i className="hfi hfi-wind"></i></p>
+              <p>{props.direction} {props.wind} m/s <i className='hfi hfi-wind'></i></p>
             </div>
           </div>
         </div>

@@ -70,6 +70,7 @@ const setBackground = (background) => {
 
 const getBackground = (data) => {
   let background;
+  let icon;
   switch(data) {
     case '01d':
       //sunny day

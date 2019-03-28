@@ -50,18 +50,18 @@ body {
 }
 */
 
-#weather__location {
+#weather_location {
   padding-top: 35px;
   /*font-size: 3.5rem;*/
   /*font-weight: bold;*/
 }
 
-#weather__location h1 {
+#weather_location h1 {
   text-transform: uppercase;
   font-size: 2rem;
 }
 
-#weather__location p {
+#weather_location p {
   font-size: 1.25rem;
 }
 
@@ -120,7 +120,7 @@ option:first-child {
   margin-top: 15px;
 }
 /*
-#weather__location {
+#weather_location {
   font-size: 1.75rem;
 }
 */
@@ -217,7 +217,7 @@ option:first-child {
     /*border: 2px solid #6c757d;
     border-radius: 5px;*/
   }
-  #weather__location {
+  #weather_location {
     /*padding-top: 35px;*/
   }
   #weather__temperature {
@@ -244,7 +244,7 @@ option:first-child {
   #weather_info {
     margin-top: 50px;
   }
-  #weather__location {
+  #weather_location {
     /*padding-top: 15px;*/
   }
   #weather__temperature {
@@ -280,25 +280,20 @@ option:first-child {
   padding-right: 0rem;
 }
 
-#clickyClick:hover {
-  cursor: pointer;
-}
-
-
 
 
 .btn-flimflam {
-    color: #fff;
-    background-color: rgb(242, 153, 74);
-    /*border-color: #6c757d;*/
-    border-color: hsl(0, 0%, 95%);
+  color: #fff;
+  background-color: rgb(242, 153, 74);
+  /*border-color: #6c757d;*/
+  border-color: hsl(0, 0%, 95%);
 }
 
 .btn-flimflam:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
-    color: #fff;
-    background-color: rgb(242, 201, 76);
-    /*border-color: #6c757d;*/
-    border-color: hsl(0, 0%, 95%);
+  color: #fff;
+  background-color: rgb(242, 201, 76);
+  /*border-color: #6c757d;*/
+  border-color: hsl(0, 0%, 95%);
 }
 
 #weather__container {
@@ -319,3 +314,51 @@ option:first-child {
 .hst-raindrop {
   font-size: 4rem;
 }*/
+
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  opacity: 1;
+  padding-right: 0.5rem;
+}
+
+.tooltip:hover {
+  cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 8.75rem;
+  background-color: transparent;
+  color: #fff;
+  text-align: center;
+  border: 0.5px solid hsl(0, 0%, 95%);
+  border-radius: 0.375rem;
+  padding: 0.15rem;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -4.6rem;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -0.3125rem;
+  border-width: 0.3125rem;
+  border-style: solid;
+  border-color: hsl(0, 0%, 95%) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.location__name {
+  display: inline-block;
+}
