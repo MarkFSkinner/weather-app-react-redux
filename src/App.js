@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Title from './components/Title';
-import Form from './components/Form';
 import Location from './components/Location';
+import Form from './components/Form';
+import LocalButton from './components/LocalButton';
 import Weather from './components/Weather';
 import './App.css';
 
@@ -51,9 +52,9 @@ class App extends Component {
 
   toggleTemperature = (e) => {
     if(e.target.classList.contains('celsius')) {
-      this.props.setTemperature({temperature: this.props.myData.temperatureC, unit: '°C'});
+      this.props.setTemperature({temperature: this.props.myData.temperatureC, unit: 'hst hst-degree-celsius'});
     } else if (e.target.classList.contains('fahrenheit')) {
-      this.props.setTemperature({temperature: this.props.myData.temperatureF, unit: '°F'});
+      this.props.setTemperature({temperature: this.props.myData.temperatureF, unit: 'hst hst-degree-fahrenheit'});
     }
   }
 
@@ -75,15 +76,19 @@ class App extends Component {
           </div>
           <div className='container'>
             <div className='row'>
-              <div className='col-12'>
+              {/*<div className='col-12'>
                 <Title />
-              </div>
+              </div>*/}
+
               <div className='col-12'>
-                <Form value={this.props.myData.value} getWeather={this.getWeather} countryNames={this.props.myData.countryNames} handleChange={this.handleChange}/>
+                <Location
+                  city={this.props.myData.city}
+                  country={this.props.myData.country}
+                  description={this.props.myData.description}
+                  getLocationFunction={this.getLocationFunction}
+                />
               </div>
-              <div className='col-12'>
-                <Location getLocationFunction ={this.getLocationFunction} clearFormFunction={this.clearFormFunction} />
-              </div>
+
               <div className='col-12'>
                 <Weather
                   city={this.props.myData.city}
@@ -100,6 +105,17 @@ class App extends Component {
                   toggleTemperature={this.toggleTemperature}
                 />
               </div>
+
+              <div className='col-12'>
+                <Form value={this.props.myData.value} getWeather={this.getWeather} countryNames={this.props.myData.countryNames} handleChange={this.handleChange}/>
+              </div>
+              {/*<div className='col-12'>
+                <LocalButton
+                  getLocationFunction={this.getLocationFunction}
+                  clearFormFunction={this.clearFormFunction}
+                />
+              </div>*/}
+
             </div>
           </div>
         </div>

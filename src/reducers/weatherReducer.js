@@ -64,7 +64,8 @@ const convertWindDirection = (degrees) => {
 }
 
 const setBackground = (background) => {
-  document.getElementById('background').style.backgroundImage = `url(${background})`;
+  //document.getElementById('background').style.backgroundImage = `url(${background})`;
+  document.getElementById('background').style.background = background;
 }
 
 const getBackground = (data) => {
@@ -72,64 +73,87 @@ const getBackground = (data) => {
   switch(data) {
     case '01d':
       //sunny day
-      background = 'http://www.toca-ch.com/data/walls/143/27445846.jpg';
+      //background = 'http://www.toca-ch.com/data/walls/143/27445846.jpg';
+      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
       break;
     case '02d':
     case '03d':
     case '04d':
       //cloudy day
-      background = 'https://wallpaper.wiki/wp-content/uploads/2017/05/wallpaper.wiki-Download-Free-Weather-Background-PIC-WPE00194.jpg';
+      //background = 'https://wallpaper.wiki/wp-content/uploads/2017/05/wallpaper.wiki-Download-Free-Weather-Background-PIC-WPE00194.jpg';
+      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
       break;
     case '09d':
     case '10d':
       //rainy day
-      background = 'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/D8qa-2E/moddy-wet-weather-background-raining-city-scenery-sad-rain-drops_hzwjel7r__F0000.png';
+      //background = 'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/D8qa-2E/moddy-wet-weather-background-raining-city-scenery-sad-rain-drops_hzwjel7r__F0000.png';
+      background = 'linear-gradient(rgb(189, 195, 199), rgb(44, 62, 80))';
       break;
     case '11d':
       //thunder
-      background = 'http://www.toca-ch.com/data/walls/143/27443286.jpg';
+      //background = 'http://www.toca-ch.com/data/walls/143/27443286.jpg';
+      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
       break;
     case '13d':
       //daytime snow
-      background = 'https://inquirymethod.com/wp-content/uploads/2014/11/snowflake-white-1030x686.jpg';
+      //background = 'https://inquirymethod.com/wp-content/uploads/2014/11/snowflake-white-1030x686.jpg';
+      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
       break;
     case '50d':
       //daytime mist
-      background = 'https://images.alphacoders.com/290/thumb-1920-290353.jpg';
+      //background = 'https://images.alphacoders.com/290/thumb-1920-290353.jpg';
+      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
       break;
     case '01n':
       //clear night
-      background = 'https://farm2.static.flickr.com/1676/26385659771_7c354aaf8c_b.jpg';
+      //background = 'https://farm2.static.flickr.com/1676/26385659771_7c354aaf8c_b.jpg';
+      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
       break;
     case '02n':
     case '03n':
     case '04n':
       //cloudy night
-      background = 'http://www.toca-ch.com/data/walls/143/27445697.jpg';
+      //background = 'http://www.toca-ch.com/data/walls/143/27445697.jpg';
+      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
       break;
     case '09n':
     case '10n':
       //rainy night
-      background = 'http://www.ehowzit.co.za/wp-content/uploads/2016/07/rainy-weather.jpg';
+      //background = 'http://www.ehowzit.co.za/wp-content/uploads/2016/07/rainy-weather.jpg';
+      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
       break;
     case '11n':
       //night thunder
-      background = 'http://www.toca-ch.com/data/walls/143/27443640.jpg';
+      //background = 'http://www.toca-ch.com/data/walls/143/27443640.jpg';
+      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
       break;
     case '13n':
       //night snow
-      background = 'https://wallpaperstock.net/wallpapers/thumbs1/45397hd.jpeg';
+      //background = 'https://wallpaperstock.net/wallpapers/thumbs1/45397hd.jpeg';
+      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
       break;
     case '50n':
       //night mist
-      background = 'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/6d4D4HR/foggy-weather-at-night-street-park_ekrwty77g__F0000.png';
+      //background = 'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/6d4D4HR/foggy-weather-at-night-street-park_ekrwty77g__F0000.png';
+      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
       break;
     case 'none':
-      background = 'https://i.ytimg.com/vi/p28pePKK7Pc/maxresdefault.jpg';
+      //background = 'https://i.ytimg.com/vi/p28pePKK7Pc/maxresdefault.jpg';
+      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
       break;
     default:
       return undefined;
   }
+  background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';//sunny
+  //background = 'linear-gradient(to top, rgb(189, 195, 199), rgb(44, 62, 80))';//cloudy/rainy
+  //background = 'linear-gradient(rgb(15, 32, 39), rgb(32, 58, 67), rgb(44, 83, 100))';//night
+  //background = 'linear-gradient(to top, rgb(41, 128, 185), rgb(109, 213, 250), rgb(255, 255, 255))';//snowy day
+  //background = 'linear-gradient(to top, rgb(0, 90, 167), rgb(255, 253, 228))';//evening night
+  //background = 'linear-gradient(to top, rgb(195, 20, 50), rgb(36, 11, 54))';//clear night
+  //background = 'linear-gradient(to top, rgb(62, 81, 81), rgb(222, 203, 164))';//fog
+  //background = 'linear-gradient(to top, rgb(240, 242, 240), rgb(0, 12, 64))';//night mist/night cloud
+  //background = 'linear-gradient(rgb(29, 67, 80), rgb(164, 57, 49))';//thunder
+  //background = '#FEC63D';
   setBackground(background);
   return background;
 }
@@ -144,7 +168,7 @@ export default function(state = initialState, action) {
         temperature: Math.round(action.payload.main.temp),
         temperatureC: Math.round(action.payload.main.temp),
         temperatureF: Math.round(action.payload.main.temp * 9/5 +32),
-        unit: '°C',
+        unit: 'hst hst-degree-celsius',
         humidity: action.payload.main.humidity,
         wind: action.payload.wind.speed,
         direction: convertWindDirection(action.payload.wind.deg),
