@@ -39,16 +39,6 @@ body {
 .container {
   margin-bottom: 20px;
 }
-/*
-#weather_title {
-  margin-top: 15px;
-}
-
-#weather_title h1 {
-  font-size: 3.5rem;
-  font-weight: bold;
-}
-*/
 
 #weather_location {
   padding-top: 35px;
@@ -289,6 +279,7 @@ option:first-child {
   /*border-color: #6c757d;*/
   /*border-color: hsl(0, 0%, 95%);*/
   border-bottom: 1px solid transparent;
+  border-radius: 0;
 }
 
 .btn-unit:focus {

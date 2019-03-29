@@ -35,7 +35,7 @@ const Weather = props => (
               {/*<i id='weather__icon' className="fas fa-sun"></i>*/}
               {/*<i id='weather__icon' className='material-icons'>wb_sunny</i>*/}
               {/*<i id='weather__icon' className="fas fa-cloud-rain"></i>*/}
-              <i id='weather__icon' className="wi wi-day-rain"></i>
+              <i id='weather__icon' className={props.icon}></i>
 
             </div>
 

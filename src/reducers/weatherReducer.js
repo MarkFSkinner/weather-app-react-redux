@@ -63,100 +63,97 @@ const convertWindDirection = (degrees) => {
   }
 }
 
+const imageMap = new Map();
+imageMap.set('01d', {//sunny day
+  background: 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))',
+  icon: 'wi wi-day-sunny'
+});
+imageMap.set('02d', {//few clouds day
+  background: 'linear-gradient(to top, rgb(189, 195, 199), rgb(44, 62, 80))',
+  icon: 'wi wi-day-cloudy'
+});
+imageMap.set('03d', {//scattered clouds day
+  background: 'linear-gradient(to top, rgb(189, 195, 199), rgb(44, 62, 80))',
+  icon: 'wi wi-cloud'
+});
+imageMap.set('04d', {//broken clouds day
+  background: 'linear-gradient(to top, rgb(189, 195, 199), rgb(44, 62, 80))',
+  icon: 'wi wi-cloudy'
+});
+imageMap.set('09d', {//shower rain day
+  background: 'linear-gradient(to top, rgb(67, 198, 172), rgb(25, 22, 84))',
+  icon: 'wi wi-rain'
+});
+imageMap.set('10d', {//rainy day
+  background: 'linear-gradient(to top, rgb(67, 198, 172), rgb(25, 22, 84))',
+  icon: 'wi wi-day-rain'
+});
+imageMap.set('11d', {//thunder day
+  background: 'linear-gradient(rgb(29, 67, 80), rgb(164, 57, 49))',
+  icon: 'wi wi-thunderstorm'
+});
+imageMap.set('13d', {//snow day
+  background: 'linear-gradient(rgb(33, 147, 176), rgb(109, 213, 237))',
+  icon: 'wi wi-day-snow'
+});
+imageMap.set('50d', {//mist day
+  background: 'linear-gradient(rgb(232, 203, 192), rgb(99, 111, 164))',
+  icon: 'wi wi-day-fog'
+});
+imageMap.set('01n', {//clear night
+  background: 'linear-gradient(to top, rgb(195, 20, 50), rgb(36, 11, 54))',//clear night
+  icon: 'wi wi-night-clear'
+});
+imageMap.set('02n', {//few clouds night
+  background: 'linear-gradient(to top, rgb(240, 194, 123), rgb(75, 18, 72))',
+  icon: 'wi wi-night-alt-cloudy'
+});
+imageMap.set('03n', {//scattered clouds night
+  background: 'linear-gradient(to top, rgb(240, 194, 123), rgb(75, 18, 72))',
+  icon: 'wi wi-cloud'
+});
+imageMap.set('04n', {//broken clouds night
+  background: 'linear-gradient(to top, rgb(240, 194, 123), rgb(75, 18, 72))',
+  icon: 'wi wi-cloudy'
+});
+imageMap.set('09n', {//shower rain night
+  background: 'linear-gradient(to top, rgb(115, 200, 169), rgb(55, 59, 68))',
+  icon: 'wi wi-rain'
+});
+imageMap.set('10n', {//rainy night
+  background: 'linear-gradient(to top, rgb(115, 200, 169), rgb(55, 59, 68))',
+  icon: 'wi wi-night-alt-rain'
+});
+imageMap.set('11n', {//thunder night
+  background: 'linear-gradient(to top, rgb(120, 2, 6), rgb(6, 17, 97))',
+  icon: 'wi wi-night-alt-thunderstorm'
+});
+imageMap.set('13n', {//snow night
+  background: 'linear-gradient(rgb(170, 75, 107), rgb(107, 107, 131), rgb(59, 141, 153))',
+  icon: 'wi wi-night-alt-snow'
+});
+imageMap.set('50n', {//mist night
+  background: 'linear-gradient(to top, rgb(62, 81, 81), rgb(222, 203, 164))',
+  icon: 'wi wi-night-fog'
+});
+imageMap.set('none', {
+  background: 'hsl(0, 0%, 15%)',
+  icon: ''
+});
+
+const getBackground = (data) => {
+  let background = imageMap.get(data).background;
+  setBackground(background);
+  return background;
+}
+
 const setBackground = (background) => {
-  //document.getElementById('background').style.backgroundImage = `url(${background})`;
   document.getElementById('background').style.background = background;
 }
 
-const getBackground = (data) => {
-  let background;
-  let icon;
-  switch(data) {
-    case '01d':
-      //sunny day
-      //background = 'http://www.toca-ch.com/data/walls/143/27445846.jpg';
-      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
-      break;
-    case '02d':
-    case '03d':
-    case '04d':
-      //cloudy day
-      //background = 'https://wallpaper.wiki/wp-content/uploads/2017/05/wallpaper.wiki-Download-Free-Weather-Background-PIC-WPE00194.jpg';
-      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
-      break;
-    case '09d':
-    case '10d':
-      //rainy day
-      //background = 'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/D8qa-2E/moddy-wet-weather-background-raining-city-scenery-sad-rain-drops_hzwjel7r__F0000.png';
-      background = 'linear-gradient(rgb(189, 195, 199), rgb(44, 62, 80))';
-      break;
-    case '11d':
-      //thunder
-      //background = 'http://www.toca-ch.com/data/walls/143/27443286.jpg';
-      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
-      break;
-    case '13d':
-      //daytime snow
-      //background = 'https://inquirymethod.com/wp-content/uploads/2014/11/snowflake-white-1030x686.jpg';
-      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
-      break;
-    case '50d':
-      //daytime mist
-      //background = 'https://images.alphacoders.com/290/thumb-1920-290353.jpg';
-      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
-      break;
-    case '01n':
-      //clear night
-      //background = 'https://farm2.static.flickr.com/1676/26385659771_7c354aaf8c_b.jpg';
-      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
-      break;
-    case '02n':
-    case '03n':
-    case '04n':
-      //cloudy night
-      //background = 'http://www.toca-ch.com/data/walls/143/27445697.jpg';
-      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
-      break;
-    case '09n':
-    case '10n':
-      //rainy night
-      //background = 'http://www.ehowzit.co.za/wp-content/uploads/2016/07/rainy-weather.jpg';
-      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
-      break;
-    case '11n':
-      //night thunder
-      //background = 'http://www.toca-ch.com/data/walls/143/27443640.jpg';
-      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
-      break;
-    case '13n':
-      //night snow
-      //background = 'https://wallpaperstock.net/wallpapers/thumbs1/45397hd.jpeg';
-      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
-      break;
-    case '50n':
-      //night mist
-      //background = 'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/6d4D4HR/foggy-weather-at-night-street-park_ekrwty77g__F0000.png';
-      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
-      break;
-    case 'none':
-      //background = 'https://i.ytimg.com/vi/p28pePKK7Pc/maxresdefault.jpg';
-      background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';
-      break;
-    default:
-      return undefined;
-  }
-  background = 'linear-gradient(to top, rgb(242, 153, 74), rgb(242, 201, 76))';//sunny
-  //background = 'linear-gradient(to top, rgb(189, 195, 199), rgb(44, 62, 80))';//cloudy/rainy
-  //background = 'linear-gradient(rgb(15, 32, 39), rgb(32, 58, 67), rgb(44, 83, 100))';//night
-  //background = 'linear-gradient(to top, rgb(41, 128, 185), rgb(109, 213, 250), rgb(255, 255, 255))';//snowy day
-  //background = 'linear-gradient(to top, rgb(0, 90, 167), rgb(255, 253, 228))';//evening night
-  //background = 'linear-gradient(to top, rgb(195, 20, 50), rgb(36, 11, 54))';//clear night
-  //background = 'linear-gradient(to top, rgb(62, 81, 81), rgb(222, 203, 164))';//fog
-  //background = 'linear-gradient(to top, rgb(240, 242, 240), rgb(0, 12, 64))';//night mist/night cloud
-  //background = 'linear-gradient(rgb(29, 67, 80), rgb(164, 57, 49))';//thunder
-  //background = '#FEC63D';
-  setBackground(background);
-  return background;
+const getIcon = (data) => {
+  let icon = imageMap.get(data).icon;
+  return icon;
 }
 
 export default function(state = initialState, action) {
@@ -174,7 +171,7 @@ export default function(state = initialState, action) {
         wind: action.payload.wind.speed,
         direction: convertWindDirection(action.payload.wind.deg),
         description: action.payload.weather[0].description.charAt(0).toUpperCase() + action.payload.weather[0].description.substr(1),
-        icon: `http://openweathermap.org/img/w/${action.payload.weather[0].icon}.png`,
+        icon: getIcon(action.payload.weather[0].icon),
         background: getBackground(action.payload.weather[0].icon),
         code: action.payload.cod,
         message: undefined
