@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import Title from './components/Title';
 import Location from './components/Location';
-import Form from './components/Form';
-import LocalButton from './components/LocalButton';
 import Weather from './components/Weather';
+import Form from './components/Form';
 import './App.css';
 
 import { connect } from 'react-redux';
@@ -76,10 +74,6 @@ class App extends Component {
           </div>
           <div className='container'>
             <div className='row'>
-              {/*<div className='col-12'>
-                <Title />
-              </div>*/}
-
               <div className='col-12'>
                 <Location
                   city={this.props.myData.city}
@@ -107,15 +101,13 @@ class App extends Component {
               </div>
 
               <div className='col-12'>
-                <Form value={this.props.myData.value} getWeather={this.getWeather} countryNames={this.props.myData.countryNames} handleChange={this.handleChange}/>
-              </div>
-              {/*<div className='col-12'>
-                <LocalButton
-                  getLocationFunction={this.getLocationFunction}
-                  clearFormFunction={this.clearFormFunction}
+                <Form
+                  value={this.props.myData.value}
+                  getWeather={this.getWeather}
+                  countryNames={this.props.myData.countryNames}
+                  handleChange={this.handleChange}
                 />
-              </div>*/}
-
+              </div>
             </div>
           </div>
         </div>

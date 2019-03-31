@@ -9,7 +9,7 @@ const Location = props => (
       </div>
       {
       props.city && props.country &&
-      <div className="location__name">
+      <div id="location__name">
         <h1>{props.city}, {props.country}</h1>
       </div>
       }
