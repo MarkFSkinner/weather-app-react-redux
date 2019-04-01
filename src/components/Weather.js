@@ -1,5 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Converter from './Converter';
 
 const Weather = props => (
@@ -41,6 +41,6 @@ const Weather = props => (
       </div>
     }
   </div>
-)
+);
 
 export default Weather;

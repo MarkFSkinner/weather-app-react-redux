@@ -11,7 +11,7 @@ import {
 
 const initialState = {
   value: 'country',
-  unit: 'celsius'
+  currentUnit: 'celsius'
 }
 
 const convertWindDirection = (degrees) => {
@@ -63,7 +63,7 @@ const convertWindDirection = (degrees) => {
   if (degrees > 326.25 && degrees < 348.75) {
     return 'NNW';
   }
-}
+};
 
 const imageMap = new Map();
 imageMap.set('01d', {//sunny day
@@ -165,10 +165,10 @@ export default function(state = initialState, action) {
         ...state,
         city: action.payload.name,
         country: action.payload.sys.country,
-        //temperature: Math.round(action.payload.main.temp),
+        temperature: Math.round(state.currentUnit === 'celsius' ? action.payload.main.temp : action.payload.main.temp * 9/5 + 32),
         temperatureC: Math.round(action.payload.main.temp),
-        temperatureF: Math.round(action.payload.main.temp * 9/5 +32),
-        //unitIcon: 'hst hst-degree-celsius',
+        temperatureF: Math.round(action.payload.main.temp * 9/5 + 32),
+        unitIcon: state.currentUnit === 'celsius' ? 'hst hst-degree-celsius' : 'hst hst-degree-fahrenheit',
         humidity: action.payload.main.humidity,
         wind: action.payload.wind.speed,
         direction: convertWindDirection(action.payload.wind.deg),
@@ -225,7 +225,7 @@ export default function(state = initialState, action) {
     case SET_UNIT:
       return {
         ...state,
-        unit: action.payload
+        currentUnit: action.payload
       }
     default:
       return state;

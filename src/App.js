@@ -27,8 +27,6 @@ class App extends Component {
 
   getLocationFunction = async () => {
     await this.props.getLocation(API_KEY);
-    console.log('DONE WAITING');
-    this.setTemperatureFunction();
     this.clearFormFunction();
   }
 
@@ -40,16 +38,12 @@ class App extends Component {
     const result = countriesData.filter(country => country.name.toLowerCase() === countryName);
     const countryCode = (result.length > 0) ? result[0].alpha2Code : countryName;
     await this.props.fetchWeather(city, countryCode, API_KEY);
-    console.log("DONE WAITING");
     if (this.props.myData.code === 200) {
-      console.log('inside if');
       this.clearFormFunction();
     }
-    this.setTemperatureFunction();
   }
 
   clearFormFunction = () => {
-    console.log('CLEAR FORMS START');
     document.getElementById('weather__form').reset();
     this.props.clearForm();
     document.getElementById('country').style.color = "rgb(73,80,87,0.8)";
@@ -62,16 +56,6 @@ class App extends Component {
     } else if (e.target.classList.contains('fahrenheit')) {
       this.props.setTemperature({temperature: this.props.myData.temperatureF, unitIcon: 'hst hst-degree-fahrenheit'});
       this.props.setUnit('fahrenheit');
-    }
-  }
-
-  setTemperatureFunction = () => {
-    console.log("unit = " + this.props.myData.unit);
-    console.log("temperatureC = " + this.props.myData.temperatureC);
-    if (this.props.myData.unit === 'celsius') {
-      this.props.setTemperature({temperature: this.props.myData.temperatureC, unitIcon: 'hst hst-degree-celsius'});
-    } else {
-      this.props.setTemperature({temperature: this.props.myData.temperatureF, unitIcon: 'hst hst-degree-fahrenheit'});
     }
   }
 

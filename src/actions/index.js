@@ -12,15 +12,11 @@ import {
 import React from 'react';
 
 export const getLocation = (API_KEY) => {
-  console.log('WAITING');
   return async (dispatch) => {
-    console.log('STILL WAITING');
     await navigator.geolocation.getCurrentPosition(async(position) => {
-      console.log('AND STILL WAITING');
       await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${API_KEY}&units=metric`)
       .then((res) => res.json())
       .then((data) => {
-        console.log('HOLY CRAP, STILL WAITING');
         if (data.cod === 200) {
           dispatch({
             type: FETCH_WEATHER,
@@ -35,16 +31,13 @@ export const getLocation = (API_KEY) => {
       });
     });
   }
-}
+};
 
 export const fetchWeather = (city, countryCode, API_KEY) => {
-  console.log('WAITING');
   return async (dispatch) => {
-    console.log('STILL WAITING');
     await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&appid=${API_KEY}&units=metric`)
     .then((res) => res.json())
     .then((data) => {
-      console.log('AND STILL WAITING');
       if (data.cod === 200) {
         dispatch({
           type: FETCH_WEATHER,
@@ -58,7 +51,7 @@ export const fetchWeather = (city, countryCode, API_KEY) => {
       }
     });
   }
-}
+};
 
 export const getCountryData = () => {
   return async (dispatch) => {
@@ -71,7 +64,7 @@ export const getCountryData = () => {
       })
     })
   }
-}
+};
 
 export const getCountryNames = () => {
   return async (dispatch) => {
@@ -87,31 +80,31 @@ export const getCountryNames = () => {
       })
     })
   }
-}
+};
 
 export const selectCountry = (result) => {
   return {
     type: SELECT_COUNTRY,
     payload: result
   }
-}
+};
 
 export const clearForm = () => {
   return {
     type: CLEAR_FORM
   }
-}
+};
 
 export const setTemperature = (data) => {
   return {
     type: SET_TEMPERATURE,
     payload: data
   }
-}
+};
 
 export const setUnit = (data) => {
   return {
     type: SET_UNIT,
     payload: data
   }
-}
+};
