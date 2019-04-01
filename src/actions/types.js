@@ -5,3 +5,4 @@ export const FETCH_NAMES = 'FETCH_NAMES';
 export const SELECT_COUNTRY = 'SELECT_COUNTRY';
 export const CLEAR_FORM = 'CLEAR_FORM';
 export const SET_TEMPERATURE = 'SET_TEMPERATURE';
+export const SET_UNIT = 'SET_UNIT';

@@ -13,19 +13,22 @@ import {
   fetchWeather,
   selectCountry,
   clearForm,
-  setTemperature
+  setTemperature,
+  setUnit
 } from './actions';
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 class App extends Component {
-  componentWillMount = async () => {
-    await this.renderCountryNames();
+  componentWillMount = () => {
+    this.renderCountryNames();
     this.getLocationFunction();
   }
 
   getLocationFunction = async () => {
     await this.props.getLocation(API_KEY);
+    console.log('DONE WAITING');
+    this.setTemperatureFunction();
     this.clearFormFunction();
   }
 
@@ -37,12 +40,16 @@ class App extends Component {
     const result = countriesData.filter(country => country.name.toLowerCase() === countryName);
     const countryCode = (result.length > 0) ? result[0].alpha2Code : countryName;
     await this.props.fetchWeather(city, countryCode, API_KEY);
+    console.log("DONE WAITING");
     if (this.props.myData.code === 200) {
+      console.log('inside if');
       this.clearFormFunction();
     }
+    this.setTemperatureFunction();
   }
 
   clearFormFunction = () => {
+    console.log('CLEAR FORMS START');
     document.getElementById('weather__form').reset();
     this.props.clearForm();
     document.getElementById('country').style.color = "rgb(73,80,87,0.8)";
@@ -50,13 +57,25 @@ class App extends Component {
 
   toggleTemperature = (e) => {
     if(e.target.classList.contains('celsius')) {
-      this.props.setTemperature({temperature: this.props.myData.temperatureC, unit: 'hst hst-degree-celsius'});
+      this.props.setTemperature({temperature: this.props.myData.temperatureC, unitIcon: 'hst hst-degree-celsius'});
+      this.props.setUnit('celsius');
     } else if (e.target.classList.contains('fahrenheit')) {
-      this.props.setTemperature({temperature: this.props.myData.temperatureF, unit: 'hst hst-degree-fahrenheit'});
+      this.props.setTemperature({temperature: this.props.myData.temperatureF, unitIcon: 'hst hst-degree-fahrenheit'});
+      this.props.setUnit('fahrenheit');
     }
   }
 
-  renderCountryNames = async () => {
+  setTemperatureFunction = () => {
+    console.log("unit = " + this.props.myData.unit);
+    console.log("temperatureC = " + this.props.myData.temperatureC);
+    if (this.props.myData.unit === 'celsius') {
+      this.props.setTemperature({temperature: this.props.myData.temperatureC, unitIcon: 'hst hst-degree-celsius'});
+    } else {
+      this.props.setTemperature({temperature: this.props.myData.temperatureF, unitIcon: 'hst hst-degree-fahrenheit'});
+    }
+  }
+
+  renderCountryNames = () => {
     this.props.getCountryNames();
     this.props.getCountryData();
   }
@@ -88,7 +107,7 @@ class App extends Component {
                   city={this.props.myData.city}
                   country={this.props.myData.country}
                   temperature={this.props.myData.temperature}
-                  unit={this.props.myData.unit}
+                  unitIcon={this.props.myData.unitIcon}
                   humidity={this.props.myData.humidity}
                   wind={this.props.myData.wind}
                   direction={this.props.myData.direction}
@@ -128,5 +147,6 @@ export default connect(mapStateToProps, {
   fetchWeather,
   selectCountry,
   clearForm,
-  setTemperature
+  setTemperature,
+  setUnit
 })(App);

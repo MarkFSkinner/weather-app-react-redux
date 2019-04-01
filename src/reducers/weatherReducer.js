@@ -5,11 +5,13 @@ import {
   FETCH_NAMES,
   SELECT_COUNTRY,
   CLEAR_FORM,
-  SET_TEMPERATURE
+  SET_TEMPERATURE,
+  SET_UNIT
 } from '../actions/types';
 
 const initialState = {
-  value: 'country'
+  value: 'country',
+  unit: 'celsius'
 }
 
 const convertWindDirection = (degrees) => {
@@ -145,16 +147,16 @@ const getBackground = (data) => {
   let background = imageMap.get(data).background;
   setBackground(background);
   return background;
-}
+};
 
 const setBackground = (background) => {
   document.getElementById('background').style.background = background;
-}
+};
 
 const getIcon = (data) => {
   let icon = imageMap.get(data).icon;
   return icon;
-}
+};
 
 export default function(state = initialState, action) {
   switch(action.type) {
@@ -163,10 +165,10 @@ export default function(state = initialState, action) {
         ...state,
         city: action.payload.name,
         country: action.payload.sys.country,
-        temperature: Math.round(action.payload.main.temp),
+        //temperature: Math.round(action.payload.main.temp),
         temperatureC: Math.round(action.payload.main.temp),
         temperatureF: Math.round(action.payload.main.temp * 9/5 +32),
-        unit: 'hst hst-degree-celsius',
+        //unitIcon: 'hst hst-degree-celsius',
         humidity: action.payload.main.humidity,
         wind: action.payload.wind.speed,
         direction: convertWindDirection(action.payload.wind.deg),
@@ -184,7 +186,7 @@ export default function(state = initialState, action) {
         temperature: undefined,
         temperatureC: undefined,
         temperatureF: undefined,
-        unit: undefined,
+        unitIcon: undefined,
         humidity: undefined,
         wind: undefined,
         direction: undefined,
@@ -218,7 +220,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         temperature: action.payload.temperature,
-        unit: action.payload.unit
+        unitIcon: action.payload.unitIcon
+      }
+    case SET_UNIT:
+      return {
+        ...state,
+        unit: action.payload
       }
     default:
       return state;

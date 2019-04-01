@@ -11,7 +11,7 @@ const Weather = props => (
           <div className='col-6' id='left_box'>
             <div className='col-12'>
               <p id='weather__temperature'>
-                {props.temperature}<span id='weather__unit'><i className={props.unit}></i></span>
+                {props.temperature}<span id='weather__unit'><i className={props.unitIcon}></i></span>
               </p>
             </div>
             <div className='col-12'>
