@@ -10,8 +10,20 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
+import * as firebase from 'firebase';
+
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTint } from '@fortawesome/free-solid-svg-icons';
+
+const config = {
+  apiKey: "AIzaSyADz3nwkvr5OY5LkJvfEBHCjo056KPkjzE",
+  authDomain: "weather-app-39e37.firebaseapp.com",
+  databaseURL: "https://weather-app-39e37.firebaseio.com",
+  projectId: "weather-app-39e37",
+  storageBucket: "weather-app-39e37.appspot.com",
+  messagingSenderId: "692925460611"
+};
+firebase.initializeApp(config);
 
 library.add(faTint);
 
