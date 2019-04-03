@@ -25,6 +25,10 @@ class App extends Component {
     this.getLocationFunction();
   }
 
+  componentDidUpdate = () => {
+    this.setActiveUnit();
+  }
+
   getLocationFunction = async () => {
     await this.props.getLocation(API_KEY);
     this.clearFormFunction();
@@ -56,6 +60,17 @@ class App extends Component {
     } else if (e.target.classList.contains('fahrenheit')) {
       this.props.setTemperature({temperature: this.props.myData.temperatureF, unitIcon: 'hst hst-degree-fahrenheit'});
       this.props.setUnit('fahrenheit');
+    }
+  }
+
+  setActiveUnit = () => {
+    let btns = document.getElementsByClassName('btn-unit');
+    for (let i = 0; i < btns.length; i++) {
+      if (btns[i].classList.contains(this.props.myData.currentUnit)) {
+        btns[i].classList.add('active');
+      } else {
+        btns[i].classList.remove('active');
+      }
     }
   }
 
