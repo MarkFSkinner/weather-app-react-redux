@@ -46,7 +46,7 @@ class App extends Component {
   clearFormFunction = () => {
     document.getElementById('weather__form').reset();
     this.props.clearForm();
-    document.getElementById('country').style.color = "rgb(73,80,87,0.8)";
+    document.getElementById('country').style.color = 'rgb(73,80,87,0.8)';
   }
 
   toggleTemperature = (e) => {
@@ -67,7 +67,7 @@ class App extends Component {
   handleChange = (event) => {
     const result = event.target.value;
     this.props.selectCountry(result);
-    document.getElementById('country').style.color = "rgb(73,80,87)";
+    document.getElementById('country').style.color = 'rgb(73,80,87)';
   }
 
   render() {

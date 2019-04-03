@@ -16,12 +16,12 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTint } from '@fortawesome/free-solid-svg-icons';
 
 const config = {
-  apiKey: "AIzaSyADz3nwkvr5OY5LkJvfEBHCjo056KPkjzE",
-  authDomain: "weather-app-39e37.firebaseapp.com",
-  databaseURL: "https://weather-app-39e37.firebaseio.com",
-  projectId: "weather-app-39e37",
-  storageBucket: "weather-app-39e37.appspot.com",
-  messagingSenderId: "692925460611"
+  apiKey: 'AIzaSyADz3nwkvr5OY5LkJvfEBHCjo056KPkjzE',
+  authDomain: 'weather-app-39e37.firebaseapp.com',
+  databaseURL: 'https://weather-app-39e37.firebaseio.com',
+  projectId: 'weather-app-39e37',
+  storageBucket: 'weather-app-39e37.appspot.com',
+  messagingSenderId: '692925460611'
 };
 firebase.initializeApp(config);
 

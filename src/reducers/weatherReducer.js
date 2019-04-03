@@ -150,7 +150,7 @@ const getBackground = (data) => {
 };
 
 const setBackground = (background) => {
-  document.getElementsByTagName("BODY")[0].style.background = background;
+  document.getElementsByTagName('BODY')[0].style.background = background;
 };
 
 const getIcon = (data) => {
