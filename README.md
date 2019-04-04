@@ -4,4 +4,4 @@ A React/Redux weather app made using the OpenWeatherMap API
 
 Part of the freeCodeCamp front end developer curriculum
 
-Visit the app [here!](https://weather-app-39e37.firebaseapp.com/)
+### Visit the app [here!](https://weather-app-39e37.firebaseapp.com/)
