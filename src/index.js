@@ -15,8 +15,10 @@ import * as firebase from 'firebase';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTint } from '@fortawesome/free-solid-svg-icons';
 
+const FIREBASE_API_KEY = process.env.REACT_APP_FIREBASE_API_KEY;
+
 const config = {
-  apiKey: 'AIzaSyADz3nwkvr5OY5LkJvfEBHCjo056KPkjzE',
+  apiKey: FIREBASE_API_KEY,
   authDomain: 'weather-app-39e37.firebaseapp.com',
   databaseURL: 'https://weather-app-39e37.firebaseio.com',
   projectId: 'weather-app-39e37',
